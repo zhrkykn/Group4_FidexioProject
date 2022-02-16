@@ -22,7 +22,7 @@ public class LoginStepDefs {
 
     @When("Enter the user credentials")
     public void enter_the_user_credentials() {
-        loginPage.login(ConfigurationReader.get("username"),ConfigurationReader.get("password"));
+        loginPage.login(ConfigurationReader.get("store_manager_username"),ConfigurationReader.get("store_manager_password"));
     }
 
     @Then("User should be able to login")
