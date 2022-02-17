@@ -1,5 +1,6 @@
 package com.fidexio.pages;
 
+import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,9 @@ public class LoginPage {
     @FindBy(css = ".btn.btn-primary")
     public WebElement loginButton;
 
+    @FindBy(css =".alert.alert-danger")
+    public WebElement errorMessage;
+
 
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
@@ -27,6 +31,10 @@ public class LoginPage {
         loginButton.click();
 
     }
+    public void validLogin(){
+        new LoginPage().login(ConfigurationReader.get("username"),ConfigurationReader.get("password"));
+    }
+
 
 
 }

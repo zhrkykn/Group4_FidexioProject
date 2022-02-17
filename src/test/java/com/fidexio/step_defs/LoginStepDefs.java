@@ -1,14 +1,13 @@
 package com.fidexio.step_defs;
 
 import com.fidexio.pages.LoginPage;
-import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.commons.io.filefilter.ConditionalFileFilter;
 import org.junit.Assert;
+
 
 public class LoginStepDefs {
 
@@ -22,7 +21,7 @@ public class LoginStepDefs {
 
     @When("Enter the user credentials")
     public void enter_the_user_credentials() {
-        loginPage.login(ConfigurationReader.get("username"),ConfigurationReader.get("password"));
+        loginPage.validLogin();
     }
 
     @Then("User should be able to login")
@@ -30,5 +29,40 @@ public class LoginStepDefs {
        String actualTitle = Driver.get().getTitle();
         Assert.assertEquals("Odoo",actualTitle);
     }
+    @When("the user enters invalid user information {string} {string}")
+    public void the_user_enters_invalid_user_information(String user, String pass) {
+        loginPage.login(user,pass);
+    }
+
+    @Then("error message should be displayed")
+    public void error_message_should_be_displayed() {
+
+        String actualErrorMessage = "Wrong login/password";
+        Assert.assertEquals(loginPage.errorMessage.getText(),actualErrorMessage);
+    }
+
+    @When("the user enters blank user information {string} {string}")
+    public void the_user_enters_blank_user_information(String userName,String passWord) {
+
+      loginPage.login(userName,passWord);
+    }
+
+    @Then("alert message should be displayed for username")
+    public void alert_message_should_be_displayed_for_username() {
+        String message = loginPage.userName.getAttribute("validationMessage");
+        String actualMessage ="Lütfen bu alanı doldurun.";//Those who get English errors should replace this part with "Please fill out this field".
+        Assert.assertEquals(message,actualMessage);
+
+    }
+
+    @Then("alert message should be displayed for password")
+    public void alert_message_should_be_displayed_for_password() {
+        String actualMessage ="Lütfen bu alanı doldurun.";//Those who get English errors should replace this part with "Please fill out this field".
+        String message = loginPage.password.getAttribute("validationMessage");
+        Assert.assertEquals(message,actualMessage);
+
+    }
+
+
 
 }
