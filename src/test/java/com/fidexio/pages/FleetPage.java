@@ -36,4 +36,7 @@ public class FleetPage extends BasePage{
         }
     }
 
+    @FindBy(xpath ="/html/body/div[1]/div[1]/div[1]/div[21]/ul[3]/li[1]/a/span")
+    public WebElement vehicle_Model;
+
 }
