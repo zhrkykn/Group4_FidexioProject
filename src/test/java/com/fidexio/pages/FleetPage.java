@@ -1,6 +1,9 @@
 package com.fidexio.pages;
 
 import com.fidexio.utilities.BrowserUtils;
+import com.fidexio.utilities.ConfigurationReader;
+import com.fidexio.utilities.Driver;
+import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,4 +43,9 @@ public class FleetPage extends BasePage{
         }
     }
 
+    @Given("The user should be logged in with valid credentials")
+    public void theUserShouldBeLoggedInWithValidCredentials() {
+        Driver.get().get(ConfigurationReader.get("url"));
+        new LoginPage().login(ConfigurationReader.get("username"), ConfigurationReader.get("password"));
+    }
 }
