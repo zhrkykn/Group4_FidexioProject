@@ -7,6 +7,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
+
 public class CalendarStepDefs {
 
     @Given("the user logged in as a {string}")
@@ -64,6 +68,9 @@ public class CalendarStepDefs {
     @Then("the user creates an event")
     public void the_user_creates_an_event() {
         // Write code here that turns the phrase above into concrete actions
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        formatter.format(now);
         throw new io.cucumber.java.PendingException();
     }
 
