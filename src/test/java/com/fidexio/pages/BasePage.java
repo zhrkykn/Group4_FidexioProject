@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasePage {
@@ -89,6 +90,23 @@ public abstract class BasePage {
                 }
             }
         }
+    }
+    public void nav2(String a){
+        BrowserUtils.waitFor(2);
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
+        List<WebElement> elementsMore = new ArrayList<>();
+        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isEnabled()){
+            Driver.get().findElement(By.cssSelector("#menu_more_container>a")).click();
+            elementsMore = Driver.get().findElements(By.cssSelector("#menu_more_container>ul>li>a>span"));
+        }
+        elements.addAll(elementsMore);
+        for (WebElement element : elements) {
+            if (element.getText().equalsIgnoreCase(a)){
+                element.click();
+                break;
+            }
+        }
+
     }
 }
 
