@@ -1,6 +1,9 @@
 package com.fidexio.step_defs;
 
+import com.fidexio.pages.DashboarPage;
+import com.fidexio.pages.FleetPage;
 import com.fidexio.pages.LoginPage;
+import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -26,8 +29,11 @@ public class LoginStepDefs {
 
     @Then("User should be able to login")
     public void user_should_be_able_to_login() {
-       String actualTitle = Driver.get().getTitle();
+
+        String actualTitle = Driver.get().getTitle();
         Assert.assertEquals("Odoo",actualTitle);
+
+
     }
     @When("the user enters invalid user information {string} {string}")
     public void the_user_enters_invalid_user_information(String user, String pass) {
@@ -36,6 +42,7 @@ public class LoginStepDefs {
 
     @Then("error message should be displayed")
     public void error_message_should_be_displayed() {
+
 
         String actualErrorMessage = "Wrong login/password";
         Assert.assertEquals(loginPage.errorMessage.getText(),actualErrorMessage);

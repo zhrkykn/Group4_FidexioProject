@@ -1,6 +1,9 @@
 package com.fidexio.pages;
 
 import com.fidexio.utilities.BrowserUtils;
+
+
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,6 +12,7 @@ import java.util.NoSuchElementException;
 public class FleetPage extends BasePage{
     @FindBy(css = "#menu_more_container>a")
     public WebElement menuMore;
+
 
     @FindBy(xpath = "(//span[@class='oe_menu_text'])[21]")
     public WebElement fleet_Menu;
