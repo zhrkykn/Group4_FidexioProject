@@ -43,9 +43,5 @@ public class FleetPage extends BasePage{
         }
     }
 
-    @Given("The user should be logged in with valid credentials")
-    public void theUserShouldBeLoggedInWithValidCredentials() {
-        Driver.get().get(ConfigurationReader.get("url"));
-        new LoginPage().login(ConfigurationReader.get("username"), ConfigurationReader.get("password"));
-    }
+
 }
