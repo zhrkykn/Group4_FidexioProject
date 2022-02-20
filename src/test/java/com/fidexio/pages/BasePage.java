@@ -66,32 +66,7 @@ public abstract class BasePage {
         BrowserUtils.clickWithJS(logOutLink);
     }
 
-
-
     public void nav(String a){
-        List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
-        for (WebElement element : elements) {
-            System.out.println(element.getText());
-            if(element.getText().equalsIgnoreCase(a)) {
-                element.click();
-                return;
-            }
-            else if(element.getText().equalsIgnoreCase("More")){
-                Driver.get().findElement(By.cssSelector("#menu_more_container>a")).click();
-
-                List<WebElement> elementsMore = Driver.get().findElements(By.cssSelector("#menu_more_container>ul>li>a>span"));
-
-                for (WebElement webElement : elementsMore) {
-                    System.out.println("webElement = " + webElement.getText());
-                    if(webElement.getText().equalsIgnoreCase(a)) {
-                        webElement.click();
-                        return;
-                    }
-                }
-            }
-        }
-    }
-    public void nav2(String a){
         BrowserUtils.waitFor(2);
         List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
         List<WebElement> elementsMore = new ArrayList<>();

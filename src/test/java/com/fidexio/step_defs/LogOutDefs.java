@@ -1,12 +1,9 @@
 package com.fidexio.step_defs;
 
 import com.fidexio.pages.DashboarPage;
-import com.fidexio.pages.FleetPage;
-import com.fidexio.pages.Test;
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.*;
-import org.bouncycastle.crypto.agreement.srp.SRP6Client;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 

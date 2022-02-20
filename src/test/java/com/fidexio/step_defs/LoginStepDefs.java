@@ -1,9 +1,7 @@
 package com.fidexio.step_defs;
 
-import com.fidexio.pages.DashboarPage;
-import com.fidexio.pages.FleetPage;
+
 import com.fidexio.pages.LoginPage;
-import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Given;
