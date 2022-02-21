@@ -1,12 +1,10 @@
 package com.fidexio.pages;
 
 import com.fidexio.utilities.BrowserUtils;
-
-
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class FleetPage extends BasePage{
@@ -16,6 +14,9 @@ public class FleetPage extends BasePage{
 
     @FindBy(xpath = "(//span[@class='oe_menu_text'])[21]")
     public WebElement fleet_Menu;
+
+    @FindBy(xpath = "//div[@data-menu-parent='134']//li/a")
+    public List<WebElement> fleetSideMenuOptions;
 
     public void clickFleet(){
 
@@ -39,5 +40,6 @@ public class FleetPage extends BasePage{
             BrowserUtils.waitForPageToLoad(5);
         }
     }
+
 
 }
