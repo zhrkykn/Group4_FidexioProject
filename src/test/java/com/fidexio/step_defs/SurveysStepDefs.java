@@ -13,21 +13,17 @@ public class SurveysStepDefs {
         loginPage.validLogin();
 
     }
-    @When("the  user clicks on the  {string} module")
-    public void the_user_clicks_on_the_module(String SurveysModule) {
+
+    @When("the  user clicks on the  Surveys module")
+    public void the_user_clicks_on_the_Surveys_module() {
 
     }
 
-    @When("the user clicks on the {string}")
-    public void the_user_clicks_on_the(String button) {
+    @Then("the user clicks on the {string} and  navigates to  {string}")
+    public void the_user_clicks_on_the_and_navigates_to(String string, String string2) {
 
     }
 
 
 
-
-    @Then("the user navigates to  {string}")
-    public void the_user_navigates_to(String expectedUrl) {
-
-    }
 }
