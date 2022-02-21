@@ -35,8 +35,8 @@ invent.product.click();
     @Then("the create button seen")
     public void the_create_button_seen() {
         BrowserUtils.waitFor(3);
-        String createbtn = "Create";
-        Assert.assertEquals("verify home page",invent.create.getText(),createbtn);
+
+       invent.create.click();
 
     }
 
