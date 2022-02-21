@@ -37,7 +37,7 @@ public class FleetMenuStepDefs {
 
         List<String> actualSideMenu = BrowserUtils.getElementsText(fleetPage.fleetSideMenuOptions);
 
-      Assert.assertEquals(fleetSideMenuExpected,BrowserUtils.getElementsText(fleetPage.fleetSideMenuOptions));
+      Assert.assertEquals(fleetSideMenuExpected,actualSideMenu);
         System.out.println("Expected fleet side menu options = " + fleetSideMenuExpected);
         System.out.println("actual fleet side menu options = " + actualSideMenu);
 

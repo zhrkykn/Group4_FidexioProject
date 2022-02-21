@@ -23,13 +23,14 @@ public class inventorySteps {
 
     @Given("the user is clicked inventory button")
     public void the_user_is_clicked_inventory_button() {
-    invent.inventory.click();
+     invent.nav("Inventory");
 
     }
 
     @Given("the user clicked the product button")
     public void the_user_clicked_the_product_button() {
-invent.product.click();
+
+        invent.product.click();
     }
 
     @Then("the create button seen")

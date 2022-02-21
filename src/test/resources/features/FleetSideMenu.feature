@@ -5,8 +5,6 @@ Feature:
     Given The user should be logged in with valid credentials
     When the user clicks to fleetPage
     Then the side menu contains
-
-
       | Vehicles               |
       | Vehicles Odometer      |
       | Vehicle Costs          |
