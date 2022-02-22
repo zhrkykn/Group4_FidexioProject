@@ -1,11 +1,14 @@
 package com.fidexio.pages;
 
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SurveysPage {
 
-    @FindBy(partialLinkText = "//a[contains(@href,'id=475')]")
+
+public class SurveysPage extends BasePage{
+
+    @FindBy(css = "a[data-menu='475']")
     public WebElement surveysMenu;
 
 
@@ -29,10 +32,20 @@ public class SurveysPage {
     public WebElement surveyTitleBox;
 
 
+    public void clickOnButton(String buttonType){
+
+        switch (buttonType) {
+            case "Create" -> createButton.click();
+            case "Kanban" -> kanbanButton.click();
+            case "List" -> listButton.click();
+            case "Import" -> importButton.click();
+        }
+
+    }
 
 
 
-    //getButton() method olustur map
+
 
 
 }
