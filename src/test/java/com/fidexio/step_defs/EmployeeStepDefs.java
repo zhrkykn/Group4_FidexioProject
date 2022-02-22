@@ -6,8 +6,7 @@ import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 
 public class EmployeeStepDefs {
     EmployeePage employeePage= new EmployeePage();
@@ -21,13 +20,13 @@ public class EmployeeStepDefs {
     }
     @When("Click on create button")
     public void click_on_create_button() {
-      employeePage.clickcreate();
+      employeePage.clickCreate();
         BrowserUtils.waitFor(3);
     }
 
     @When("Click on import button")
     public void click_on_import_button() {
-       employeePage.clickimport();
+       employeePage.clickImport();
         BrowserUtils.waitFor(3);
     }
 
@@ -41,7 +40,7 @@ public class EmployeeStepDefs {
 
     @When("Click on follow button")
     public void click_on_follow_button() {
-        employeePage.clickfollow();
+        employeePage.clickFollow();
         BrowserUtils.waitFor(5);
 
     }
