@@ -9,3 +9,7 @@ Feature: Create a new vehicle model
     Scenario: Creating new vehicle model
       When user click the Fleet menu
       And click Vehicle Model menu
+      And click Create button
+      And write Model name
+
+

@@ -36,7 +36,13 @@ public class FleetPage extends BasePage{
         }
     }
 
-    @FindBy(xpath ="/html/body/div[1]/div[1]/div[1]/div[21]/ul[3]/li[1]/a/span")
-    public WebElement vehicle_Model;
+    @FindBy(xpath ="(//div[@data-menu-parent='134']//li/a)[9]")
+    public WebElement vehicle_Model_Menu;
+
+    @FindBy(xpath = "(//div/button)[5]")
+    public WebElement vehMod_CreateButton;
+
+    @FindBy(xpath = "(//*[@placeholder=\"e.g. Model S\"])")
+    public WebElement modelName_Input;
 
 }
