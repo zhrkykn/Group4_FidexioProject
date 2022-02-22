@@ -56,8 +56,8 @@ public class SurveysStepDefs {
 
     }
 
-    @When("the user enters  a {string}")
-    public void the_user_enters_a(String title) {
+    @When("the user enters survey title as {string}")
+    public void the_user_enters_survey_title_as(String title) {
         BrowserUtils.waitFor(2);
        surveysPage.surveyTitleBox.sendKeys(title);
 
@@ -74,6 +74,15 @@ public class SurveysStepDefs {
         BrowserUtils.waitFor(2);
 
 
+    }
+
+    @Then("the user should see error message")
+    public void the_user_should_see_error_message() {
+
+        String expectedMessage=" The following fields are invalid:\n" +
+                "Title";
+        String actualMessage= surveysPage.surveyError.getText();
+        Assert.assertEquals(actualMessage,expectedMessage);
     }
 
 

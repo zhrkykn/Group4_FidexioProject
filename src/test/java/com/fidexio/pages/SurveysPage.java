@@ -37,6 +37,9 @@ public class SurveysPage extends BasePage {
     @FindBy(xpath = "(//div//p)[2]")
     public  WebElement surveyCreatedMessage;
 
+    @FindBy(css = ".o_notification.undefined.o_error")
+    public  WebElement surveyError;
+
 
 
     public void clickOnButton(String buttonType) {
