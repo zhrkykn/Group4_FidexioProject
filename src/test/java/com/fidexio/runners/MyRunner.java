@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
         glue = "com/fidexio/step_defs",
         dryRun = false,
         tags = "@smoke"
-
 )
 public class MyRunner {
 }
