@@ -79,9 +79,10 @@ public class SurveysStepDefs {
     @Then("the user should see error message")
     public void the_user_should_see_error_message() {
 
-        String expectedMessage=" The following fields are invalid:\n" +
+        String expectedMessage="The following fields are invalid:\n" +
                 "Title";
         String actualMessage= surveysPage.surveyError.getText();
+
         Assert.assertEquals(actualMessage,expectedMessage);
     }
 
