@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/features",
         glue = "com/fidexio/step_defs",
-        dryRun = true,
-        tags = "@nkd"
+        dryRun = false,
+        tags = ""
 
 )
 public class MyRunner {
