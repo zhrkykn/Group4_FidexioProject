@@ -18,13 +18,6 @@ public class EmployeePage extends BasePage {
     @FindBy(css = " button.o_follow_btn.o_follow_btn.btn-sm.btn-primary.oe_kanban_action_button")
     public WebElement followButton;
 
-
-    @FindBy(xpath = "(//li[@class='active'])[2]")
-    public WebElement NewEmployeePage;
-
-    @FindBy(xpath = "(//li[@class='active'])[2]")
-    public WebElement ImportaFilePage;
-
     @FindBy(xpath = "//span[@class='o_following']")
     public WebElement Following;
 
@@ -46,21 +39,20 @@ public class EmployeePage extends BasePage {
         Employees.click();
     }
 
-    public void clickcreate() {
+    public void clickCreate() {
         createButton.click();
     }
 
-    public void clickimport() {
+    public void clickImport() {
         importButton.click();
     }
 
-    public void clickfollow() {
+    public void clickFollow() {
         followButton.click();
     }
 
     public String FollowingInfo() {
-        String actualText = Following.getText();
-        return actualText;
+        return Following.getText();
     }
 
     public void clickSave() {
@@ -73,8 +65,7 @@ public class EmployeePage extends BasePage {
     }
 
     public String MessageCreated() {
-        String actualText = EmployeeCreatedMessage.getText();
-        return actualText;
+        return EmployeeCreatedMessage.getText();
     }
 
 }
