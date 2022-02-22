@@ -7,7 +7,7 @@ Feature: Posmanager is login
     When Enter the user credentials
     Then User should be able to login
 
-  Scenario Outline: Login with wrong credentials
+ Scenario Outline: Login with wrong credentials
     When the user enters invalid user information "<userType>" "<passWord>"
     Then error message should be displayed
     Examples:
@@ -29,3 +29,4 @@ Feature: Posmanager is login
     Examples:
       | userType              | passWord |
       | posmanager10@info.com |          |
+

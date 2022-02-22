@@ -43,6 +43,38 @@ public class FleetPage extends BasePage{
     @FindBy(css =".o_notification.undefined.o_error")
     public WebElement odoError2;
 
+    @FindBy(partialLinkText="Vehicles Services Logs")
+    public WebElement vehicleServicesLogs;
+
+    @FindBy(partialLinkText = "btn btn-primary btn-sm o_list_button_add")
+    public WebElement createButton;
+
+    @FindBy(id = "o_field_input_1159")
+    public WebElement vehicleType;
+
+    @FindBy(id = "o_field_input_1160")
+    public WebElement serviceType;
+
+    @FindBy(id ="o_field_input_1161")
+    public WebElement totalPrice;
+
+    @FindBy(id = "o_field_input_1162")
+    public WebElement odometerValue;
+
+    @FindBy(id = "o_field_input_1164")
+    public WebElement date;
+
+    @FindBy(id="o_field_input_1165")
+    public WebElement purchaserName;
+
+    @FindBy(id = "o_field_input_1166")
+    public WebElement vendorName;
+
+    @FindBy(id = "o_field_input_1167")
+    public WebElement invoiceReference;
+
+    @FindBy(partialLinkText = "btn btn-primary btn-sm o_form_button_save")
+    public WebElement saveButton;
 
     public void clickFleet(){
 

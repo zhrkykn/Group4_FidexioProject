@@ -25,7 +25,6 @@ public class LoginPage extends BasePage{
     @FindBy(css =".alert.alert-danger")
     public WebElement errorMessage;
 
-
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
         password.sendKeys(passwordStr);
