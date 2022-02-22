@@ -5,13 +5,15 @@ import com.fidexio.pages.SurveysPage;
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class SurveysStepDefs {
 
-    SurveysPage surveysPage= new SurveysPage();
+    SurveysPage surveysPage = new SurveysPage();
 
     @Given("the user is logged in as posmanager")
     public void the_user_is_logged_in_as_posmanager() {
@@ -19,11 +21,8 @@ public class SurveysStepDefs {
         String url = ConfigurationReader.get("url");
         Driver.get().get(url);
         Driver.get().manage().window().maximize();
-        LoginPage loginPage= new LoginPage();
+        LoginPage loginPage = new LoginPage();
         loginPage.validLogin();
-
-
-
 
 
     }
@@ -50,6 +49,32 @@ public class SurveysStepDefs {
 
     }
 
+
+    @When("the user clicks on create button")
+    public void the_user_clicks_on_create_button() {
+    surveysPage.clickCreate();
+
+    }
+
+    @When("the user enters  a {string}")
+    public void the_user_enters_a(String title) {
+        BrowserUtils.waitFor(2);
+       surveysPage.surveyTitleBox.sendKeys(title);
+
+    }
+
+    @And("the user clicks on Save Button")
+    public void the_user_clicks_on_Save_Button() {
+        surveysPage.clickSave();
+    }
+
+    @Then("the user should see {string} message")
+    public void the_user_should_see_message(String expectedMessage) {
+        Assert.assertEquals(surveysPage.surveyCreated(),expectedMessage);
+        BrowserUtils.waitFor(2);
+
+
+    }
 
 
 }

@@ -1,12 +1,15 @@
 package com.fidexio.pages;
 
 
+import com.fidexio.utilities.Driver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-
-public class SurveysPage extends BasePage{
+public class SurveysPage extends BasePage {
 
     @FindBy(css = "a[data-menu='475']")
     public WebElement surveysMenu;
@@ -28,11 +31,15 @@ public class SurveysPage extends BasePage{
     @FindBy(xpath = "//button[@*='s']")
     public WebElement saveButton;
 
-    @FindBy(xpath = "//input[@*='o_field_input_46']")
+    @FindBy(css= ".o_field_char.o_field_widget.o_input.o_required_modifier")
     public WebElement surveyTitleBox;
 
+    @FindBy(xpath = "(//div//p)[2]")
+    public  WebElement surveyCreatedMessage;
 
-    public void clickOnButton(String buttonType){
+
+
+    public void clickOnButton(String buttonType) {
 
         switch (buttonType) {
             case "Create" -> createButton.click();
@@ -41,11 +48,28 @@ public class SurveysPage extends BasePage{
             case "Import" -> importButton.click();
         }
 
+
+    }
+
+    public void clickCreate() {
+        createButton.click();
+
     }
 
 
 
 
+    public void clickSave() {
+        saveButton.click();
+    }
+
+    public String  surveyCreated(){
+        String actualMessage;
+       return  actualMessage = surveyCreatedMessage.getText();
+
+
+
+    }
 
 
 }
