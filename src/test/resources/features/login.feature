@@ -1,4 +1,3 @@
-
 Feature: Posmanager is login
 
   Background:

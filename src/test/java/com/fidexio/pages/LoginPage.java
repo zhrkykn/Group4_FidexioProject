@@ -2,11 +2,12 @@ package com.fidexio.pages;
 
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
+import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
     public LoginPage(){
         PageFactory.initElements(Driver.get(), this);
@@ -37,4 +38,6 @@ public class LoginPage {
 
 
 
-}
+    }
+
+
