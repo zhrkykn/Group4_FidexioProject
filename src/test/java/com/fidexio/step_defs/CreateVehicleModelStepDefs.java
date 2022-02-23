@@ -69,12 +69,38 @@ public class CreateVehicleModelStepDefs {
 
     }
 
-    @Then("verify that alert display in vehicle model creation page")
-    public void verify_that_alert_display_in_vehicle_model_creation_page() {
 
-        fleetPage.odoError2.isDisplayed();
-        String message = fleetPage.odoError2.getText();
-        System.out.println(message);
+    @Then("verify that -The following fields are invalid: Model name- alert display")
+    public void verify_that_The_following_fields_are_invalid_Model_name_alert_display() {
+
+        String actualError = fleetPage.odoError2.getText();
+        String expectedError = "The following fields are invalid:\n" +
+                "Model name";
+
+        Assert.assertEquals(expectedError,actualError);
+    }
+
+
+
+    @Then("verify that -The following fields are invalid: Make- alert display")
+    public void verify_that_The_following_fields_are_invalid_Make_alert_display() {
+        String actualError = fleetPage.odoError2.getText();
+        String expectedError = "The following fields are invalid:\n" +
+                "Make";
+
+        Assert.assertEquals(expectedError,actualError);
+    }
+
+
+
+    @Then("verify that -The following fields are invalid: Model name Make- alert display")
+    public void verify_that_The_following_fields_are_invalid_Model_name_Make_alert_display() {
+        String actualError = fleetPage.odoError2.getText();
+        String expectedError = "The following fields are invalid:\n" +
+                "Model name\n"+
+                "Make";
+
+        Assert.assertEquals(expectedError,actualError);
     }
 
 
