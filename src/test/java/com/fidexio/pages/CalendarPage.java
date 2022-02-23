@@ -31,32 +31,50 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "//button[contains(@class,'button_month')]")
     public WebElement monthButton;
 
-    @FindBy(xpath = "//button[@accesskey='l']")
-    public WebElement listButton;
+    @FindBy(xpath = "//tr/td/div[2]/div/div[2]/table/tbody/tr[25]/td[2]")
+    public WebElement timeBoxToClick;
 
-    @FindBy(xpath = "//button[@accesskey='c']")
+    @FindBy(xpath = "//button[@class='btn btn-sm btn-primary']")
     public WebElement createButton;
+
+    @FindBy(xpath = "//table/tbody/tr/td[5]/div/div[2]/a")
+    public WebElement createdTimeBoxBefore;
+
+    @FindBy(xpath = "//table/tbody/tr/td[5]/div/div[2]/a")
+    public WebElement createdTimeBoxAfter;
+
+    @FindBy(xpath = "//h4[@class='modal-title']")
+    public WebElement meetingSubject;
 
     @FindBy(css = "[name=name]")
     public WebElement meetingSubjectInput;
 
-    @FindBy(xpath = "(//tbody/tr[6]/td[2]/div/input)[1]")
+    @FindBy(xpath = "(//input[@class='o_datepicker_input o_input'])[5]")
     public WebElement startingAtInput;
 
     @FindBy(css = "[name=duration]")
     public WebElement durationInput;
 
-    @FindBy(xpath = "//button[@accesskey='s']")
+    @FindBy(xpath = "//th[@class='fc-day-header fc-widget-header fc-wed']")
+    public WebElement dateTimeCell;
+
+    @FindBy(xpath = "//span[@class='o_field_date o_field_widget']")
+    public WebElement dateTimeText;
+
+    @FindBy(xpath = "//button[@class='btn btn-sm btn-primary']")
     public WebElement saveButton;
 
-    @FindBy(css = ".o_data_row")
-    public List<WebElement> rowsEventCreated;
-
-    @FindBy(xpath = "//div[1]/div[2]/div[2]/div/div/div/table/tbody/tr/td[3]")
-    public List<WebElement> eventsDateList;
-
-    @FindBy(xpath = "//button[@accesskey='a']")
+    @FindBy(xpath = "(//button[@class='btn btn-sm btn-primary'])[1]")
     public WebElement editButton;
+
+    @FindBy(xpath = "(//button[@class='btn btn-sm btn-default'])[1]")
+    public WebElement deleteButton;
+
+    @FindBy(xpath = "(//button[@class='btn btn-sm btn-default'])[2]")
+    public WebElement closeButton;
+
+    @FindBy(xpath = "(//button[@class='btn btn-sm btn-primary'])[2]")
+    public WebElement okayButton;
 
 
     public void navigateToCalendar() {
@@ -74,18 +92,5 @@ public class CalendarPage extends BasePage {
             return "Day";
         }
         else return "Month";
-    }
-
-    public List<String> getRowsInList(){
-        List<String> rowsAsStringInList = new ArrayList<>();
-        for (WebElement e: rowsEventCreated) {
-            rowsAsStringInList.add(e.getText().toString());
-            //System.out.println(e.getText().toString());
-        }
-        return rowsAsStringInList;
-    }
-
-    public String getFirstEventsDate(){
-        return eventsDateList.get(0).getText();
     }
 }

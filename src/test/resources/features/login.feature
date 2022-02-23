@@ -1,4 +1,4 @@
-@wip
+
 Feature: Posmanager is login
 
   Scenario: Login as a user

@@ -1,7 +1,7 @@
 @smoke
 Feature: Calender page
 
-  @wip3
+
   Scenario:  Verify that the user can access the Calender display as Week
     Given the user logged in as a "store manager"
     When the user navigates to Calender
@@ -15,13 +15,14 @@ Feature: Calender page
     When the user changes the display to Month
     Then the user changes the display to Week
 
-  @wip1
+  @wip
   Scenario: Verify that the user can create an event
     Given the user logged in as a "store manager"
     When the user navigates to Calender
     Then the user creates an event
 
-  @wip2
+
+  @wip
   Scenario: Verify that the user can edit a created event
     Given the user logged in as a "store manager"
     And the user navigates to Calender

@@ -26,13 +26,6 @@ public class CalendarStepDefs {
         String username =null;
         String password =null;
 
-//        if(userType.equals("driver")){
-//            username = ConfigurationReader.get("driver_username");
-//            password = ConfigurationReader.get("driver_password");
-//        }else if(userType.equals("sales manager")){
-//            username = ConfigurationReader.get("sales_manager_username");
-//            password = ConfigurationReader.get("sales_manager_password");
-//        }
         if(userType.equals("store manager")){
             username = ConfigurationReader.get("username");
             password = ConfigurationReader.get("password");
@@ -88,63 +81,39 @@ public class CalendarStepDefs {
 
     @Then("the user creates an event")
     public void the_user_creates_an_event() {
-        LocalDateTime datetime = LocalDateTime.now();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        String currentDateTime = datetime.format(format);
-        String dateFixed = currentDateTime.substring(3,5) + "/" + currentDateTime.substring(0,3) + currentDateTime.substring(6);
-        System.out.println("dateFixed = " + dateFixed);
+
         BrowserUtils.waitFor(1);
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
-        BrowserUtils.waitFor(1);
-        page.createButton.click();
-        System.out.println("createButton found and clicked!!!");
+        page.timeBoxToClick.click();
+        System.out.println("timeBoxToClick found and clicked!!!");
         BrowserUtils.waitFor(1);
         String eventsSubject = "Test Meeting Subject";
         page.meetingSubjectInput.sendKeys(eventsSubject);
         System.out.println("meetingSubjectInput done!!!");
         BrowserUtils.waitFor(1);
-        page.startingAtInput.sendKeys(dateFixed);
-        System.out.println("startingAtInput done!!!");
+        page.createButton.click();
+        System.out.println("createButton found and clicked!!!");
+
         BrowserUtils.waitFor(1);
-        page.durationInput.clear();
+        page.createdTimeBoxBefore.click();
+        System.out.println("The created event is clicked!!!");
         BrowserUtils.waitFor(1);
-        String eventsDuration = "01:00";
-        page.durationInput.sendKeys(eventsDuration);
-        System.out.println("durationInput done!!!");
-        BrowserUtils.waitFor(1);
-        page.saveButton.click();
-        System.out.println("saveButton found and clicked!!!");
-        BrowserUtils.waitFor(1);
-        page.navigateToCalendar();
-        BrowserUtils.waitFor(1);
-        System.out.println("The paged navigated to " + Driver.get().getTitle());
-        BrowserUtils.waitFor(3);
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
-        BrowserUtils.waitFor(1);
-        List<String> listOfEventsDetails = page.getRowsInList();
-        String actualEvent = eventsSubject + " " + dateFixed + " " + dateFixed.substring(0,12) + (Integer.parseInt(dateFixed.substring(12,13))+1) + dateFixed.substring(13) + " 1 record 01:00";
+        String actualEvent = page.meetingSubject.getText().substring(6);
         System.out.println("detailsOfEvent = " + actualEvent);
-        String expectedEvent = "";
-        for (String s: listOfEventsDetails) {
-            if (s.equals(actualEvent)) {
-                expectedEvent = s;
-            }
-        }
-        Assert.assertTrue("verify that the event created is presence in the list", expectedEvent.equals(actualEvent));
+        Assert.assertEquals("verify that the event created is present on the display", eventsSubject, actualEvent);
+        page.closeButton.click();
+        System.out.println("closeButton clicked");
+        System.out.println("\n------ The event has been created successfully -------");
+
     }
 
     @When("the user edits Meeting Subject")
     public void the_user_edits_Meeting_Subject() {
         System.out.println("\n--------- Meeting Subject Changing Test -------");
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
-        BrowserUtils.waitFor(1);
-        String firstEventsDetails = page.getRowsInList().get(0);
-        page.rowsEventCreated.get(0).click();
+        page.createdTimeBoxBefore.click();
+        System.out.println("The created event is clicked!!!");
         BrowserUtils.waitFor(1);
         page.editButton.click();
+        System.out.println("editButton clicked");
         BrowserUtils.waitFor(1);
         page.meetingSubjectInput.clear();
         BrowserUtils.waitFor(1);
@@ -157,34 +126,30 @@ public class CalendarStepDefs {
         BrowserUtils.waitFor(1);
 
         // this part is for asserting
-        page.navigateToCalendar();
+        page.createdTimeBoxBefore.click();
+        System.out.println("The created event is clicked!!!");
         BrowserUtils.waitFor(1);
-        System.out.println("The page navigated to " + Driver.get().getTitle());
-        BrowserUtils.waitFor(3);
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
-        BrowserUtils.waitFor(1);
-        String actualFirstEventsSubjectChanged = page.getRowsInList().get(0).substring(0,28);
-        String expectedFirstEventsSubjectChanged =  eventsSubjectNew;
-        System.out.println("detailsOfEvent = " + expectedFirstEventsSubjectChanged);
-        Assert.assertTrue("verify that the subject of the first event in the list was changed", actualFirstEventsSubjectChanged.equals(expectedFirstEventsSubjectChanged));
-        System.out.println("\n---------Meeting Subject Changing Test Done-------");
+        String actualEvent = page.meetingSubject.getText().substring(6);
+        System.out.println("detailsOfEvent = " + actualEvent);
+        Assert.assertEquals("verify that the event created is present on the display", eventsSubjectNew, actualEvent);
+        page.closeButton.click();
+        System.out.println("closeButton clicked");
+        System.out.println("\n---------Meeting Subject has been changed successfully-------");
     }
 
     @Then("the user edits meeting schedule")
     public void the_user_edits_meeting_schedule() {
         System.out.println("\n---------Meeting Schedule Changing-------");
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
+        page.createdTimeBoxBefore.click();
+        System.out.println("The created event is clicked!!!");
         BrowserUtils.waitFor(1);
-        System.out.println("expectedFirstEventsDateBeforeChanged = " + page.getFirstEventsDate());
-        page.rowsEventCreated.get(0).click();
-        BrowserUtils.waitForVisibility(page.editButton,3);
         page.editButton.click();
+        System.out.println("editButton clicked");
         BrowserUtils.waitFor(1);
         page.startingAtInput.clear();
         BrowserUtils.waitFor(1);
-        String eventsDateNew = "02/22/2022 11:11:11";
+        String eventsDateNew = page.dateTimeCell.getText().substring(4) + " 08:00:00";
+        System.out.println("eventsDateNew = " + eventsDateNew);
         page.startingAtInput.sendKeys(eventsDateNew);
         System.out.println("meetingDateTime changed!!!");
         BrowserUtils.waitFor(1);
@@ -199,17 +164,21 @@ public class CalendarStepDefs {
         BrowserUtils.waitFor(1);
 
         // this part is for asserting
-        page.navigateToCalendar();
+        page.createdTimeBoxAfter.click();
         BrowserUtils.waitFor(1);
-        System.out.println("The page navigated to " + Driver.get().getTitle());
-        BrowserUtils.waitFor(3);
-        page.listButton.click();
-        System.out.println("listButton found and clicked!!!");
+        String actualDateTime = page.dateTimeText.getText();
+        Assert.assertEquals("verify that the subject of the first event in the list was changed", actualDateTime, eventsDateNew);
         BrowserUtils.waitFor(1);
-        String actualFirstEventsSubjectChanged = page.getFirstEventsDate();
-        System.out.println("expectedFirstEventsDateAfterChanged = " + eventsDateNew);
-        Assert.assertTrue("verify that the subject of the first event in the list was changed", actualFirstEventsSubjectChanged.equals(eventsDateNew));
-        System.out.println("\n---------Meeting Schedule Changing Test Done-------");
+        page.closeButton.click();
+        System.out.println("closeButton clicked");
+        System.out.println("\n---------Meeting Schedule has been changed successfully-------");
 
+        // this part to delete the event
+        page.createdTimeBoxAfter.click();
+        BrowserUtils.waitFor(1);
+        page.deleteButton.click();
+        BrowserUtils.waitFor(1);
+        page.okayButton.click();
+        System.out.println("\n------- The event has been removed successfully -------");
     }
 }
