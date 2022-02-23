@@ -1,4 +1,4 @@
-@wip
+@fc
 Feature: As a Posmanager, I should be able to create and design a new survey from "Surveys" module
 
   Background:
@@ -35,3 +35,8 @@ Feature: As a Posmanager, I should be able to create and design a new survey fro
     When the user clicks on create button
     And the user clicks on Save Button
     Then the user should see error message
+
+
+    Scenario: Verify that the user should be able to see created survey is listed after clicking the Surveys module.
+
+      Then the user should be able to see created survey is listed

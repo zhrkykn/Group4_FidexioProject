@@ -15,6 +15,7 @@ public class SurveysStepDefs {
 
     SurveysPage surveysPage = new SurveysPage();
 
+
     @Given("the user is logged in as posmanager")
     public void the_user_is_logged_in_as_posmanager() {
 
@@ -58,13 +59,14 @@ public class SurveysStepDefs {
 
     @When("the user enters survey title as {string}")
     public void the_user_enters_survey_title_as(String title) {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(5);
        surveysPage.surveyTitleBox.sendKeys(title);
 
     }
 
     @And("the user clicks on Save Button")
     public void the_user_clicks_on_Save_Button() {
+
         surveysPage.clickSave();
     }
 
@@ -84,6 +86,11 @@ public class SurveysStepDefs {
         String actualMessage= surveysPage.surveyError.getText();
 
         Assert.assertEquals(actualMessage,expectedMessage);
+    }
+
+    @Then("the user should be able to see created survey is listed")
+    public void the_user_should_be_able_to_see_created_survey_is_listed() {
+    surveysPage.surveyListed();
     }
 
 

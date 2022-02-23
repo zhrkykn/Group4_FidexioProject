@@ -1,12 +1,11 @@
 package com.fidexio.pages;
 
 
-import com.fidexio.utilities.Driver;
-import org.openqa.selenium.WebDriver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 
 public class SurveysPage extends BasePage {
@@ -40,6 +39,9 @@ public class SurveysPage extends BasePage {
     @FindBy(css = ".o_notification.undefined.o_error")
     public  WebElement surveyError;
 
+    @FindBy(xpath = "//div[@class='o_kanban_record_top']")
+    public List<WebElement> createdSurveyList;
+
 
 
     public void clickOnButton(String buttonType) {
@@ -72,6 +74,14 @@ public class SurveysPage extends BasePage {
 
 
 
+    }
+
+    public void surveyListed(){
+        String expectedSurveyTitle="Customer Survey3";
+
+        String actualSurveyTitle=createdSurveyList.get(createdSurveyList.size()-1).getText();
+
+        Assert.assertEquals(expectedSurveyTitle,actualSurveyTitle);
     }
 
 
