@@ -76,4 +76,18 @@ public class FleetPage extends BasePage{
     @FindBy(xpath = "(//*[@placeholder=\"e.g. Model S\"])")
     public WebElement modelName_Input;
 
+    @FindBy(xpath = "//*[@class='o_input ui-autocomplete-input']")
+    public WebElement vehMod_MakeDropdown;
+
+    @FindBy(xpath = "(//*[@class=\"ui-menu-item\"])[3]/a")
+    public WebElement vehMod_MakeDropdownAudi;
+
+
+    @FindBy(xpath = "//*[@class=\"btn btn-primary btn-sm o_form_button_save\"]")
+    public WebElement vehMod_SaveButton;
+
+    @FindBy(xpath = "//*[@class=\"o_field_char o_field_widget o_required_modifier\"]")
+    public WebElement dynamicModelName;
+
+
 }
