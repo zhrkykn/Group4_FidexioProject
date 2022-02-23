@@ -12,13 +12,13 @@ Feature: Create a new vehicle model
     Scenario: Creating new vehicle model
       When write Model name to input "Java EU7"
       And Click make type dropdown menu
-      And Choose make type on dropdown menu
+      And Choose "Audi" for make type on dropdown menu
       And Click Save button in the vehicle model menu
       Then verify that vehicle model created
   @VecCrea2
     Scenario:Cannot create a new Vehicle Model without Model name
     When Click make type dropdown menu
-    And Choose make type on dropdown menu
+    And Choose "Audi" for make type on dropdown menu
     And Click Save button in the vehicle model menu
     Then verify that alert display in vehicle model creation page
   @VecCrea3

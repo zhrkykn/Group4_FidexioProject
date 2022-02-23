@@ -79,8 +79,22 @@ public class FleetPage extends BasePage{
     @FindBy(xpath = "//*[@class='o_input ui-autocomplete-input']")
     public WebElement vehMod_MakeDropdown;
 
-    @FindBy(xpath = "(//*[@class=\"ui-menu-item\"])[3]/a")
-    public WebElement vehMod_MakeDropdownAudi;
+    @FindBy(xpath = "(//*[@class=\"ui-menu-item\"])")
+    public List<WebElement> vehMod_dropdownSelect;
+
+    public WebElement vehMod_dropdownMeth(String makeType){
+
+        WebElement forElse=null;
+        for (WebElement element : vehMod_dropdownSelect) {
+            if(element.getText().equalsIgnoreCase(makeType)){
+
+                forElse=element;
+            }
+
+        }
+        return forElse;
+
+    }
 
 
     @FindBy(xpath = "//*[@class=\"btn btn-primary btn-sm o_form_button_save\"]")

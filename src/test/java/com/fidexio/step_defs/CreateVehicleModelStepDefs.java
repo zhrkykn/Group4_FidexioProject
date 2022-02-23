@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 public class CreateVehicleModelStepDefs {
 
     FleetPage fleetPage=new FleetPage();
+    String makeName;
+
 
     @When("user click the Fleet menu")
     public void user_click_the_Fleet_menu() {
@@ -42,10 +44,12 @@ public class CreateVehicleModelStepDefs {
         fleetPage.vehMod_MakeDropdown.click();
     }
 
-    @When("Choose make type on dropdown menu")
-    public void choose_make_type_on_dropdown_menu() {
-        fleetPage.vehMod_MakeDropdownAudi.click();
-        BrowserUtils.waitFor(5);
+
+
+    @When("Choose {string} for make type on dropdown menu")
+    public void choose_for_make_type_on_dropdown_menu(String makeType) {
+        fleetPage.vehMod_dropdownMeth(makeType).click();
+        makeName=makeType;
     }
 
 
@@ -59,7 +63,7 @@ public class CreateVehicleModelStepDefs {
     @Then("verify that vehicle model created")
     public void verify_that_vehicle_model_created() {
         String modelName=fleetPage.dynamicModelName.getText();
-        String expectedTitle="Audi/"+modelName+" - Odoo";
+        String expectedTitle=makeName+"/"+modelName+" - Odoo";
         String actualTitle=Driver.get().getTitle();
         Assert.assertEquals(expectedTitle,actualTitle);
 
@@ -67,7 +71,10 @@ public class CreateVehicleModelStepDefs {
 
     @Then("verify that alert display in vehicle model creation page")
     public void verify_that_alert_display_in_vehicle_model_creation_page() {
+
         fleetPage.odoError2.isDisplayed();
+        String message = fleetPage.odoError2.getText();
+        System.out.println(message);
     }
 
 
