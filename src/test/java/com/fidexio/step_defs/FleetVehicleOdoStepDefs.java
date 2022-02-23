@@ -53,12 +53,16 @@ public class FleetVehicleOdoStepDefs {
 
     @Then("Error message displayed")
     public void error_message_displayed() {
-
+        /*
         String actualMessage ="The following fields are invalid:\n" +
                 "Vehicle";
         String message = fleetPage.odoError2.getText();
         Assert.assertEquals(message,actualMessage);
-
+        */
+        String expect = "The following fields are invalid:";
+        String actual = fleetPage.vehErr.getText();
+        BrowserUtils.waitFor(1);
+        Assert.assertEquals("Verify that error message",expect,actual);
 
     }
 

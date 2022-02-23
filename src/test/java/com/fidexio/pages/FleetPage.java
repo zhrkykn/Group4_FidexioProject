@@ -11,6 +11,15 @@ public class FleetPage extends BasePage{
     @FindBy(css = "#menu_more_container>a")
     public WebElement menuMore;
 
+    //Vehicle module
+    @FindBy(xpath = "//button[contains(text(),'Create')]")
+    public WebElement createButtonVehicle;
+
+    @FindBy(xpath = "//div[@name='model_id']//input")
+    public WebElement carModelVehicle;
+
+    @FindBy(xpath = "//input[@name='license_plate']")
+    public WebElement licensePlateVehicle;
 
     @FindBy(xpath = "(//span[@class='oe_menu_text'])[21]")
     public WebElement fleet_Menu;
@@ -43,6 +52,8 @@ public class FleetPage extends BasePage{
     @FindBy(css =".o_notification.undefined.o_error")
     public WebElement odoError2;
 
+    @FindBy(css = ".o_notification_title")
+    public WebElement vehErr;
 
     public void clickFleet(){
 
@@ -64,6 +75,14 @@ public class FleetPage extends BasePage{
         }catch (NoSuchElementException e){
             fleet_Menu.click();
             BrowserUtils.waitForPageToLoad(5);
+        }
+    }
+
+    public void navInFleet(String leftSideMenuName){
+        BrowserUtils.waitFor(2);
+        for (WebElement menuName : fleetSideMenuOptions) {
+            if(menuName.getText().equalsIgnoreCase(leftSideMenuName))
+                menuName.click();
         }
     }
 

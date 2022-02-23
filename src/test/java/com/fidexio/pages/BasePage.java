@@ -23,6 +23,10 @@ public abstract class BasePage {
     @FindBy(css = "span[class='oe_topbar_name']")
     public WebElement userName;
 
+    //save button for all vehicle page
+    @FindBy(xpath = "//button[contains(text(),'Save')]")
+    public WebElement saveButton;
+
     @FindBy(linkText = "Log out")
     public WebElement logOutLink;
 

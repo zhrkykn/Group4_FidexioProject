@@ -60,7 +60,8 @@ public class EmployeeStepDefs {
 
     @Then("User click on Save Button")
     public void user_click_on_Save_Button() {
-    employeePage.clickSave();
+    employeePage.saveButton.click();
+    //employeePage.clickSave();
         BrowserUtils.waitFor(2);
     }
     @Then("User should see {string} message")

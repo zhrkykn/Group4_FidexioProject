@@ -2,12 +2,14 @@ package com.fidexio.step_defs;
 
 
 import com.fidexio.pages.LoginPage;
+import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.ConfigurationReader;
 import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.service.DriverCommandExecutor;
 
 
@@ -41,6 +43,7 @@ public class LoginStepDefs {
 
     @Then("error message should be displayed")
     public void error_message_should_be_displayed() {
+
 
 
         String actualErrorMessage = "Wrong login/password";
