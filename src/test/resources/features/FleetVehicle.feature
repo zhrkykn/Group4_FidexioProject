@@ -1,4 +1,4 @@
-
+@Add
 Feature: Creation vehicle in Fleet
 
   Background:
@@ -12,7 +12,7 @@ Feature: Creation vehicle in Fleet
     And User enter required info for Vehicle
     And User click on Save Button
     Then User should be able to see new vehicle in list
-  @wer
+
   Scenario Outline: user shouldn't create a vehicle with missing required info
     Given User click to create
     When user enters missing information required to create tool "<carName>" "<license>"
