@@ -52,7 +52,7 @@ public class CreateVehicleModelStepDefs {
     @When("Click Save button in the vehicle model menu")
     public void click_Save_button_in_the_vehicle_model_menu() {
         fleetPage.vehMod_SaveButton.click();
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(1);
     }
 
 
@@ -63,6 +63,11 @@ public class CreateVehicleModelStepDefs {
         String actualTitle=Driver.get().getTitle();
         Assert.assertEquals(expectedTitle,actualTitle);
 
+    }
+
+    @Then("verify that alert display in vehicle model creation page")
+    public void verify_that_alert_display_in_vehicle_model_creation_page() {
+        fleetPage.odoError2.isDisplayed();
     }
 
 

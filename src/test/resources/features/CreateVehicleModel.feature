@@ -16,4 +16,11 @@ Feature: Create a new vehicle model
       And Click Save button in the vehicle model menu
       Then verify that vehicle model created
 
+      Scenario:Cannot create a new Vehicle Model without Model name
+        When Click make type dropdown menu
+        And Choose make type on dropdown menu
+        And Click Save button in the vehicle model menu
+        Then verify that alert display in vehicle model creation page
+
+
 
