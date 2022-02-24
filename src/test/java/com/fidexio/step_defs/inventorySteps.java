@@ -10,7 +10,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
+//Verify that the user can create a product.
+//Verify that a new product can be found in the search.
+//Verify that all the saved details are listed correctly.
 
 public class inventorySteps {
      InventoryPage invent=new InventoryPage();
@@ -72,6 +76,7 @@ invent.product.click();
 
         invent.SalesPrice.clear();
         invent.SalesPrice.sendKeys("20.00");
+        BrowserUtils.waitFor(3);
     }
 
     @Then("Click on product save button")
@@ -81,10 +86,10 @@ invent.SaveButton.click();
 
     @Then("Get the created message")
     public void get_the_created_message() {
-        String actualMessage ="Product Template created";
+        String expected ="Product Template created";
 
         String message = invent.CreatedMessage.getText();
-        Assert.assertEquals(message,actualMessage);
+        Assert.assertEquals(message,expected);
 
     }
 
@@ -104,6 +109,54 @@ invent.SaveButton.click();
         String message = invent.errorMessage.getText();
         Assert.assertEquals(message,actualMessage);
     }
+
+
+
+
+
+
+    @Then("click search button")
+    public void click_search_button() {
+        invent.search.click();
+
+    }
+
+    @Then("product name written")
+    public void product_name_written() {
+        invent.search.clear();
+        BrowserUtils.waitFor(2);
+        invent.search.sendKeys("Scientific Calculator");
+        invent.search.sendKeys(Keys.ENTER);
+        BrowserUtils.waitFor(2);
+
+    }
+
+    @Then("product name found on the list")
+    public void product_name_found_on_the_list() {
+        String actualMessage ="Scientific Calculator" ;
+        BrowserUtils.waitFor(2);
+
+        String message = invent.scCalculator.getText();
+        BrowserUtils.waitFor(2);
+        Assert.assertEquals(message,actualMessage);
+
+
+
+    }
+
+
+
+
+    @Then("product type and sales price seen")
+    public void product_type_and_sales_price_seen() {
+
+        String actualMessage ="$ 20.00";
+
+        String message = invent.price.getText();
+        Assert.assertEquals(message,actualMessage);
+
+    }
+
 
 
 

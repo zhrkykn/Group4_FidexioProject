@@ -13,9 +13,9 @@ public class InventoryPage extends BasePage {
     public WebElement create;
     @FindBy(css=".o_field_char.o_field_widget.o_input.o_required_modifier")
     public WebElement productName;
-    @FindBy(css="#o_field_input_1178")
+    @FindBy(xpath ="//table//select")
     public WebElement ProductType;
-@FindBy(css="#o_field_input_1182")
+@FindBy(xpath = "//table[2]//tbody//tr//td[2]//div//input")
     public WebElement SalesPrice;
 @FindBy(css=".btn.btn-primary.btn-sm.o_form_button_save")
     public WebElement SaveButton;
@@ -23,5 +23,10 @@ public class InventoryPage extends BasePage {
     public WebElement CreatedMessage;
 @FindBy(css=".o_notification_title")
     public WebElement errorMessage;
-
+@FindBy(css = ".o_searchview_input")
+    public WebElement search;
+@FindBy(xpath = "//span[text()='Scientific Calculator']")
+    public WebElement scCalculator;
+@FindBy(xpath = "//*[@name='lst_price']")
+    public WebElement price;
 }
