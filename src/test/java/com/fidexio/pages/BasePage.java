@@ -23,6 +23,10 @@ public abstract class BasePage {
     @FindBy(css = "span[class='oe_topbar_name']")
     public WebElement userName;
 
+    //save button for all vehicle page
+    @FindBy(xpath = "//button[contains(text(),'Save')]")
+    public WebElement saveButton;
+
     @FindBy(linkText = "Log out")
     public WebElement logOutLink;
 
@@ -51,7 +55,6 @@ public abstract class BasePage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public String getUserName() {
@@ -81,6 +84,31 @@ public abstract class BasePage {
                 break;
             }
         }
+
+    }
+    public void nav(String moduleName,String leftSideMenu){
+        BrowserUtils.waitFor(2);
+        List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
+        List<WebElement> elementsMore = new ArrayList<>();
+        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isEnabled()){
+            Driver.get().findElement(By.cssSelector("#menu_more_container>a")).click();
+            elementsMore = Driver.get().findElements(By.cssSelector("#menu_more_container>ul>li>a>span"));
+        }
+        elements.addAll(elementsMore);
+        for (WebElement element : elements) {
+            if (element.getText().equalsIgnoreCase(moduleName)){
+                element.click();
+                break;
+            }
+        }
+        String left = "(//ul[@class='oe_secondary_submenu nav nav-pills nav-stacked']//span[contains(text(),'"+leftSideMenu+"')])[1]";
+        new DashboarPage().waitUntilLoaderScreenDisappear();
+        WebElement leftSideWE = Driver.get().findElement(By.xpath(left));
+        leftSideWE.click();
+        new DashboarPage().waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitFor(2);
+
+
 
     }
 }

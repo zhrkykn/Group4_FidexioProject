@@ -47,6 +47,14 @@ public class EmployeeStepDefs {
         BrowserUtils.waitFor(2);
     }
 
+
+    @Then("User click on Save Button")
+    public void user_click_on_Save_Button() {
+    employeePage.saveButton.click();
+    //employeePage.clickSave();
+        BrowserUtils.waitFor(2);
+    }
+
     @Then("User should see {string} message")
     public void user_should_see_message(String expectedText) {
         String actualText= employeePage.MessageCreated();
