@@ -1,4 +1,4 @@
-@Add
+
 Feature: Creation vehicle in Fleet
 
   Background:
