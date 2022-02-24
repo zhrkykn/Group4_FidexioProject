@@ -67,4 +67,41 @@ public class FleetPage extends BasePage{
         }
     }
 
+    @FindBy(xpath ="(//div[@data-menu-parent='134']//li/a)[9]")
+    public WebElement vehicle_Model_Menu;
+
+    @FindBy(xpath = "(//div/button)[5]")
+    public WebElement vehMod_CreateButton;
+
+    @FindBy(xpath = "(//*[@placeholder=\"e.g. Model S\"])")
+    public WebElement modelName_Input;
+
+    @FindBy(xpath = "//*[@class='o_input ui-autocomplete-input']")
+    public WebElement vehMod_MakeDropdown;
+
+    @FindBy(xpath = "(//*[@class=\"ui-menu-item\"])")
+    public List<WebElement> vehMod_dropdownSelect;
+
+    public WebElement vehMod_dropdownMeth(String makeType){
+
+        WebElement forElse=null;
+        for (WebElement element : vehMod_dropdownSelect) {
+            if(element.getText().equalsIgnoreCase(makeType)){
+
+                forElse=element;
+            }
+
+        }
+        return forElse;
+
+    }
+
+
+    @FindBy(xpath = "//*[@class=\"btn btn-primary btn-sm o_form_button_save\"]")
+    public WebElement vehMod_SaveButton;
+
+    @FindBy(xpath = "//*[@class=\"o_field_char o_field_widget o_required_modifier\"]")
+    public WebElement dynamicModelName;
+
+
 }
