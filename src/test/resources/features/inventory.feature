@@ -1,6 +1,4 @@
 
-@ip
-
 Feature: inventory button
 
   Background:

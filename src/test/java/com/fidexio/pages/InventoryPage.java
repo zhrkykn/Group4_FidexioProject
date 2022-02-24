@@ -5,8 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class InventoryPage extends BasePage {
 
-    @FindBy(xpath = "/html/body/nav/div[2]/ul[1]/li[9]/ul/li[2]/a/span")
-    public WebElement inventory;
+
     @FindBy(xpath = "(//span[contains(text(),'Products')])[7]")
     public WebElement product;
     @FindBy(xpath = "//button[contains(text(),'Create')]")
