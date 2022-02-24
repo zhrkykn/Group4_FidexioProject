@@ -75,7 +75,7 @@ invent.product.click();
     public void add_sales_price() {
 
         invent.SalesPrice.clear();
-        invent.SalesPrice.sendKeys("20.00");
+        invent.SalesPrice.sendKeys("$ 20.00");
         BrowserUtils.waitFor(3);
     }
 
@@ -104,10 +104,10 @@ invent.SaveButton.click();
 
     @Then("Error message is displayed")
     public void error_message_is_displayed() {
-        String actualMessage ="The following fields are invalid:\n" +
+        String expectedMessage ="The following fields are invalid:\n" +
                 "Name";
         String message = invent.errorMessage.getText();
-        Assert.assertEquals(message,actualMessage);
+        Assert.assertEquals(message,expectedMessage);
     }
 
 

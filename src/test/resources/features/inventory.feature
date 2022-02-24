@@ -1,5 +1,5 @@
 
-
+@ip
 
 Feature: inventory button
 
@@ -36,7 +36,7 @@ Feature: inventory button
 
 
 
-@ip
+
     Scenario: Verify that all the saved details are listed correctly.
 
       Then click search button
