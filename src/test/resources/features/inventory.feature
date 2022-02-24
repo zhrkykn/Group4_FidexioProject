@@ -23,7 +23,7 @@ Feature: inventory button
     Then Add Product Type
     And Add sales price
     And Click on product save button
-    And Error message is displayed
+    And Error message displayed
 
 
     Scenario: Verify that a new product can be found in the search.

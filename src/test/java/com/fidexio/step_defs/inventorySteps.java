@@ -105,17 +105,6 @@ invent.SaveButton.click();
         dropProductType.selectByVisibleText("Consumable");
     }
 
-    @Then("Error message is displayed")
-    public void error_message_is_displayed() {
-        String expectedMessage ="The following fields are invalid:\n" +
-                "Name";
-        String message = invent.errorMessage.getText();
-        Assert.assertEquals(message,expectedMessage);
-    }
-
-
-
-
 
 
     @Then("click search button")
