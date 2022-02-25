@@ -17,23 +17,7 @@ public class FleetVehicleDefs {
     @Given("User navigate to {string}")
     public void user_navigate_to(String string) {
         fleet.waitUntilLoaderScreenDisappear();
-        fleet.nav("Fleet");
-    }
-
-    @Given("User click {string} menu in FleetPage")
-    public void user_click_menu_in_FleetPage(String string) {
-        fleet.waitUntilLoaderScreenDisappear();
-        fleet.navInFleet(string);
-        BrowserUtils.waitForPageToLoad(2);
-    }
-
-    @When("User click to create")
-    public void user_click_to_create() {
-        BrowserUtils.waitForPageToLoad(2);
-        BrowserUtils.waitFor(5);
-        fleet.waitUntilLoaderScreenDisappear();
-        fleet.createButtonVehicle.click();
-        BrowserUtils.waitFor(2);
+        fleet.nav(string);
     }
 
     @When("User enter required info for Vehicle")
@@ -41,7 +25,7 @@ public class FleetVehicleDefs {
         fleet.waitUntilLoaderScreenDisappear();
         BrowserUtils.waitForPageToLoad(2);
         fleet.carModelVehicle.click();
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(1);
         Driver.get().findElement(By.xpath("//li[@class='ui-menu-item'][3]")).click();
         fleet.licensePlateVehicle.sendKeys("This is group4.");
     }
@@ -52,8 +36,7 @@ public class FleetVehicleDefs {
         BrowserUtils.waitForPageToLoad(3);
         List<WebElement> licenseList = Driver.get().findElements(By.xpath("//div[@class='oe_kanban_details']/strong/span[1]"));
         List<String> licenseListStr = BrowserUtils.getElementsText(licenseList);
-        System.out.println(licenseListStr);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(2);
         Assert.assertTrue("Verify that new car added.", licenseListStr.contains("This is group4."));
 
     }
