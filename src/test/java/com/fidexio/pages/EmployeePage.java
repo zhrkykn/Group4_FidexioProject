@@ -1,6 +1,6 @@
 package com.fidexio.pages;
 
-import com.fidexio.utilities.BrowserUtils;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -33,31 +33,33 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//*[text()='Rachael Taylor']")
     public WebElement newEmployee;
 
+    public void clickButtons(String buttonName){
 
+        if(buttonName.equals("create")){
+            createButton.click();
+        }
+        else if(buttonName.equals("import")){
+            importButton.click();
+        }
+        else if(buttonName.equals("follow")){
+            followButton.click();
+        }
+        else if(buttonName.equals("save")){
+            SaveButton.click();
+        }
+
+    }
     public void clickEmployees() {
 
         Employees.click();
     }
 
-    public void clickCreate() {
-        createButton.click();
-    }
-
-    public void clickImport() {
-        importButton.click();
-    }
-
-    public void clickFollow() {
-        followButton.click();
-    }
 
     public String FollowingInfo() {
         return Following.getText();
     }
 
-    public void clickSave() {
-        SaveButton.click();
-    }
+
 
     public void enterName() {
         String name = "Rachael Taylor";

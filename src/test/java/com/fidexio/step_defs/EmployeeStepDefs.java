@@ -18,16 +18,11 @@ public class EmployeeStepDefs {
         employeePage.clickEmployees();
         BrowserUtils.waitFor(3);
     }
-    @When("Click on create button")
-    public void click_on_create_button() {
-      employeePage.clickCreate();
-        BrowserUtils.waitFor(3);
-    }
 
-    @When("Click on import button")
-    public void click_on_import_button() {
-       employeePage.clickImport();
-        BrowserUtils.waitFor(3);
+    @Then("Click on {string} button")
+    public void user_click_on_button(String buttonName) {
+        employeePage.clickButtons(buttonName);
+        BrowserUtils.waitFor(2);
     }
 
     @Then("User should see {string} title")
@@ -38,18 +33,12 @@ public class EmployeeStepDefs {
         BrowserUtils.waitFor(2);
     }
 
-    @When("Click on follow button")
-    public void click_on_follow_button() {
-        employeePage.clickFollow();
-        BrowserUtils.waitFor(5);
 
-    }
     @Then("User should see {string} information")
     public void user_should_see_information(String expectedText) {
         String actualText= employeePage.FollowingInfo();
         BrowserUtils.waitFor(5);
         Assert.assertEquals(actualText,expectedText);
-
     }
 
     @When("User enter a Employee Name")
@@ -58,18 +47,20 @@ public class EmployeeStepDefs {
         BrowserUtils.waitFor(2);
     }
 
+
     @Then("User click on Save Button")
     public void user_click_on_Save_Button() {
-    employeePage.clickSave();
+    employeePage.saveButton.click();
+    //employeePage.clickSave();
         BrowserUtils.waitFor(2);
     }
+
     @Then("User should see {string} message")
     public void user_should_see_message(String expectedText) {
         String actualText= employeePage.MessageCreated();
         BrowserUtils.waitFor(2);
         Assert.assertEquals(actualText,expectedText);
         BrowserUtils.waitFor(2);
-
     }
 
     @When("User search for {string} and see the name")
