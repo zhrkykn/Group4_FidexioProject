@@ -169,15 +169,26 @@ public class FleetPage extends BasePage{
     @FindBy(xpath = "(//*[@class=\"o_input ui-autocomplete-input\"])[1]")
     public WebElement vehicleContractDropdown;
 
-    @FindBy(xpath = "(//*[@class=\"o_input ui-autocomplete-input\"])[1]")
+    @FindBy(xpath = "//a[text()='Audi/A1/1-AUD-001']")
     public WebElement vehicleAudiOption;
 
 
     @FindBy(xpath = "(//*[@class=\"btn btn-primary btn-sm o_form_button_save\"]")
     public WebElement saveButton;
 
-    //@FindBy(xpath = "//*[@class=\"ui-menu-item\"])[2]")
-    //public WebElement vehicleAudiOption;
+    //@FindBy(xpath = "(//*[@class='o_notification undefined o_error'])")
+    @FindBy(css = ".o_notification.undefined.o_error")
+    public WebElement warningMessage;
+
+
+    @FindBy(className = "o_notification_manager")
+    public WebElement getWarningMessage;
+
+
+
+
+
+
 
 
 
