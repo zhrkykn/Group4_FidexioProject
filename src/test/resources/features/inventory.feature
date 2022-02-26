@@ -1,4 +1,4 @@
-
+@ip
 Feature: inventory button
 
   Background:
@@ -23,21 +23,22 @@ Feature: inventory button
     Then Add Product Type
     And Add sales price
     And Click on product save button
-    And Error message is displayed
+    And Error message displayed
 
 
-    Scenario: Verify that a new product can be found in the search.
+  Scenario: Verify that a new product can be found in the search.
 
-      Then click search button
-      And product name written
-      Then product name found on the list
-
-
-
-
-    Scenario: Verify that all the saved details are listed correctly.
-
-      Then click search button
-      And product name written
+    Then click search button
+    And product name written
     Then product name found on the list
-      Then product type and sales price seen
+
+
+
+
+  Scenario: Verify that all the saved details are listed correctly.
+
+    Then click search button
+    And product name written
+    Then product name found on the list
+    Then product type and sales price seen
+
