@@ -10,7 +10,7 @@
     Scenario:Create Vehicles Fuel Log
       When the user clicks on fleet link
       Then the user clicks on Vehicles Fuel Logs
-      And the user clicks on create button
+      And the user clicks on create button for vehicle
       Then the user clicks on vehicle dropdown
       And the user chooses any car
       Then the user fills out liters
@@ -22,7 +22,7 @@
     Scenario: Create Vehicles Fuel Log Without a Vehicle
       When the user clicks on fleet link
       Then the user clicks on Vehicles Fuel Logs
-      And the user clicks on create button
+      And the user clicks on create button for vehicle
       Then the user clicks on vehicle dropdown
       Then the user fills out liters
       And the user fills out price per liter

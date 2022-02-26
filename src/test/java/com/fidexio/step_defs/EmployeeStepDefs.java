@@ -29,6 +29,7 @@ public class EmployeeStepDefs {
     public void user_should_see_title(String expectedTitle) {
 
         String actualTitle = Driver.get().getTitle();
+        BrowserUtils.waitFor(2);
         Assert.assertEquals(expectedTitle,actualTitle);
         BrowserUtils.waitFor(2);
     }

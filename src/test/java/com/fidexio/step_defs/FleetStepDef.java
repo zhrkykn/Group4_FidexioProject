@@ -30,7 +30,7 @@ public class FleetStepDef {
     }
 
 
-    @And("the user clicks on create button")
+    @And("the user clicks on create button for vehicle")
     public void theUserClicksOnCreateButton() {
         new FleetPage().waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(3);
