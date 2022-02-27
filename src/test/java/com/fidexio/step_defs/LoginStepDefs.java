@@ -49,7 +49,7 @@ public class LoginStepDefs {
 
 
         String actualErrorMessage = "Wrong login/password";
-        //Assert.assertEquals(loginPage.errorMessage.getText(),actualErrorMessage);
+        Assert.assertEquals(loginPage.errorMessage.getText(),actualErrorMessage);
     }
 
     @When("the user enters blank user information {string} {string}")
@@ -60,17 +60,13 @@ public class LoginStepDefs {
 
     @Then("alert message should be displayed for username")
     public void alert_message_should_be_displayed_for_username() {
-        String message = loginPage.userName.getAttribute("validationMessage");
-        String actualMessage ="Lütfen bu alanı doldurun.";//Those who get English errors should replace this part with "Please fill out this field".
-        Assert.assertEquals(message,actualMessage);
+        loginPage.validationMessage();
 
     }
 
     @Then("alert message should be displayed for password")
     public void alert_message_should_be_displayed_for_password() {
-        String actualMessage ="Lütfen bu alanı doldurun.";//Those who get English errors should replace this part with "Please fill out this field".
-        String message = loginPage.password.getAttribute("validationMessage");
-        Assert.assertEquals(message,actualMessage);
+        loginPage.validationMessage();
 
     }
 

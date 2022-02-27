@@ -42,9 +42,9 @@ public class FleetContractStepDefs {
 
     @When("user click on Save Button")
     public void userClickOnContractSaveButton() {
-        fleetPage.saveButton.click();
+        fleetPage.savedButton.click();
 
-        //System.out.println(new FleetPage().warningMessage.getAttribute("validationMessage"));
+        //System.out.println(new FleetPage().warningsMessage.getAttribute("validationMessage"));
 
 
 

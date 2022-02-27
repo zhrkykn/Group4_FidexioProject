@@ -216,11 +216,11 @@ public class FleetPage extends BasePage{
 
 
     @FindBy(xpath = "(//*[@class=\"btn btn-primary btn-sm o_form_button_save\"]")
-    public WebElement saveButton;
+    public WebElement savedButton;
 
     //@FindBy(xpath = "(//*[@class='o_notification undefined o_error'])")
     @FindBy(css = ".o_notification.undefined.o_error")
-    public WebElement warningMessage;
+    public WebElement warningsMessage;
 
 
     @FindBy(className = "o_notification_manager")
