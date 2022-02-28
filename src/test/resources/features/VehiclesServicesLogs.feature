@@ -16,7 +16,7 @@ Feature:Create a new vehicle services logs.
     When click the create button
     And enters credential "<vehicle>" "<service type>"
     And the user click the save button
-    Then error message should be displayed on the screen
+    Then Error message displayed
     Examples:
       | vehicle           | service type |
       |                   |              |

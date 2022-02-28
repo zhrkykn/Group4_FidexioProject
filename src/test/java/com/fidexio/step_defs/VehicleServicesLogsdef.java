@@ -40,15 +40,17 @@ public class VehicleServicesLogsdef {
 
     @When("enters credential {string} {string}")
     public void enters_credential(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        page.vehicleType.sendKeys(string);
+        page.serviceType.sendKeys(string2);
+
+
+
+
     }
 
-    @Then("error message should be displayed on the screen")
-    public void error_message_should_be_displayed_on_the_screen() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+
+
+
 
 
 
