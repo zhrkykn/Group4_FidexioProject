@@ -96,6 +96,18 @@ public class FleetPage extends BasePage{
     @FindBy(css =".o_notification.undefined.o_error")
     public WebElement odoError2;
 
+    @FindBy(xpath="(//div[@data-menu-parent='134']//li/a)[6]")
+    public WebElement vehicleServicesLogs;
+
+
+    @FindBy(xpath = "(//*[@class='o_input ui-autocomplete-input'])[1]")
+    public WebElement vehicleType;
+
+    @FindBy(xpath = "(//*[@class='o_input ui-autocomplete-input'])[2]")
+    public WebElement serviceType;
+
+    @FindBy(xpath="(//*[@class='o_input ui-autocomplete-input'])[3]")
+    public WebElement purchaserName;
 
     @FindBy(css = ".o_notification_title")
     public WebElement vehErr;
