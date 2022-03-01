@@ -25,7 +25,7 @@ Feature: As a posmanager, I should be able to create and design a new survey fro
   Scenario: Verify that user can not create a survey without Survey Title
     When the user clicks on create button
     And the user clicks on Save Button
-    Then the user should see error message
+    Then Error message displayed
 
 
   Scenario: Verify that the user should be able to see created survey is listed after clicking the Surveys module.
