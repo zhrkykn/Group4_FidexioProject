@@ -1,6 +1,7 @@
 package com.fidexio.pages;
 
 
+import com.fidexio.utilities.BrowserUtils;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,7 @@ public class SurveysPage extends BasePage {
     @FindBy(xpath = "//button[@*='l']")
     public WebElement listButton;
 
-    @FindBy(css = "button.btn.btn-sm.btn-default.o_button_import")
+    @FindBy(xpath = "//button[contains(text(),'Import')]")
     public WebElement importButton;
 
     @FindBy(xpath = "//button[@*='s']")
@@ -42,16 +43,31 @@ public class SurveysPage extends BasePage {
     @FindBy(xpath = "//div[@class='o_kanban_record_top']")
     public List<WebElement> createdSurveyList;
 
+    @FindBy(xpath = "//span[text()='Draft']")
+    public WebElement kanbanTitle;
+
+    @FindBy(xpath ="/html/body/div[1]/div[2]/div[2]/div/div/div/table/thead/tr/th[2]")
+    public  WebElement listTitle;
+
 
 
     public void clickOnButton(String buttonType) {
 
         switch (buttonType) {
-            case "Create" -> createButton.click();
-            case "Kanban" -> kanbanButton.click();
-            case "List" -> listButton.click();
-            case "Import" -> importButton.click();
+            case "Create":
+                BrowserUtils.waitForClickablility(createButton,5);
+                createButton.click();
+                break;
+
+            case "Import" :
+                BrowserUtils.waitForClickablility(importButton,5);
+                importButton.click();
+                BrowserUtils.waitFor(5);
+                break;
+            default:
+                System.out.println("Button not found");
         }
+
 
 
     }

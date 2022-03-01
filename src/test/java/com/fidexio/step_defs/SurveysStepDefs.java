@@ -11,6 +11,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.Objects;
+
 public class SurveysStepDefs {
 
     SurveysPage surveysPage = new SurveysPage();
@@ -30,25 +32,14 @@ public class SurveysStepDefs {
 
     @When("the  user clicks on the  Surveys module")
     public void the_user_clicks_on_the_Surveys_module() {
-        surveysPage.waitUntilLoaderScreenDisappear();
+
         surveysPage.surveysMenu.click();
-        BrowserUtils.waitFor(3);
+        surveysPage.waitUntilLoaderScreenDisappear();
 
 
     }
 
-    @When("the user clicks on the {string}")
-    public void the_user_clicks_on_the(String buttonType) {
 
-        surveysPage.clickOnButton(buttonType);
-
-
-    }
-
-    @Then("the user   navigates to {string}")
-    public void the_user_navigates_to(String expectedPage) {
-
-    }
 
 
     @When("the user clicks on create button")
@@ -94,4 +85,30 @@ public class SurveysStepDefs {
     }
 
 
-}
+    @When("the user clicks on the {string} button")
+    public void theUserClicksOnTheButton(String buttonType) {
+        surveysPage.waitUntilLoaderScreenDisappear();
+        surveysPage.clickOnButton(buttonType);
+
+    }
+
+    @Then("the user  sees the  title {string}")
+    public void theUserSeesTheTitle(String expectedTitle) {
+        surveysPage.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitFor(3);
+        String actualTitle=Driver.get().getTitle();
+        Assert.assertEquals(expectedTitle,actualTitle);
+    }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
