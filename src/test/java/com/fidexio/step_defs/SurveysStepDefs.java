@@ -33,7 +33,7 @@ public class SurveysStepDefs {
     @When("the  user clicks on the  Surveys module")
     public void the_user_clicks_on_the_Surveys_module() {
 
-        surveysPage.surveysMenu.click();
+        surveysPage.nav("Surveys");
         surveysPage.waitUntilLoaderScreenDisappear();
 
 
