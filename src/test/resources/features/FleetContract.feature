@@ -19,7 +19,7 @@ Feature: Contract Page
   Scenario: user should not be able to create new vehicle contract with missing required field
     When User click to create
     And User click on Save Button
-    Then error message should be displayed
+
 
 
 
