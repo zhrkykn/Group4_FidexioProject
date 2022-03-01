@@ -39,6 +39,7 @@ public class FleetVehicleDefs {
         BrowserUtils.waitFor(2);
         Assert.assertTrue("Verify that new car added.", licenseListStr.contains("This is group4."));
 
+
     }
     @When("user enters missing information required to create tool {string} {string}")
     public void user_enters_missing_information_required_to_create_tool(String carName, String license) {

@@ -19,6 +19,7 @@ public class FleetContractStepDefs {
     @Then("user navigate to Vehicles Contracts")
     public void user_navigate_to_Vehicles_Contracts() {
         fleetPage.vehicleContractMenu.click();
+        BrowserUtils.waitForPageToLoad(5);
         BrowserUtils.waitFor(5);
 
 

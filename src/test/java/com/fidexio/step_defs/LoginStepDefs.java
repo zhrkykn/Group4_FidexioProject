@@ -27,6 +27,7 @@ public class LoginStepDefs {
     public void enter_the_user_credentials() {
 
         loginPage.validLogin();
+        loginPage.waitUntilLoaderScreenDisappear();
 
     }
 
@@ -34,7 +35,8 @@ public class LoginStepDefs {
     public void user_should_be_able_to_login() {
 
         String actualTitle = Driver.get().getTitle();
-        Assert.assertEquals("Odoo",actualTitle);
+        Assert.assertTrue(actualTitle.contains("Odoo"));
+        //Assert.assertEquals("Odoo",actualTitle);
 
 
     }

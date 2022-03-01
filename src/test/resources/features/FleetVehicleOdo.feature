@@ -4,7 +4,7 @@ Feature:Fleet Vehicle Odometer
   Background:
     Given The user should be logged in with valid credentials
     When the user clicks to fleetPage
-    Then the user clicks to Vehicle Odometer
+    #Then the user clicks to Vehicle Odometer
     And Click on Create button
   @FIDE-684
   Scenario: User create Vehicles Odometer in fleet menu

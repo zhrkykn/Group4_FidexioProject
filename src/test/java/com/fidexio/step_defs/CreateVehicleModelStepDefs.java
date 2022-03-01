@@ -17,8 +17,7 @@ public class CreateVehicleModelStepDefs {
 
     @When("user click the Fleet menu")
     public void user_click_the_Fleet_menu() {
-        BrowserUtils.waitFor(5);
-        fleetPage.clickFleet();
+        fleetPage.nav("Fleet","Vehicles Contracts");
     }
 
     @When("click Vehicle Model menu")

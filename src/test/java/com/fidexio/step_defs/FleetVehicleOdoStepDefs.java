@@ -18,13 +18,14 @@ public class FleetVehicleOdoStepDefs {
 
     @Then("Click on Create button")
     public void click_on_Create_button() {
-        BrowserUtils.waitFor(2);
+        fleetPage.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitFor(3);
         fleetPage.odoCreateButton.click();
     }
 
     @When("Choose the vehicle name")
     public void choose_the_vehicle_name() {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitForClickablility(fleetPage.vehicleOdoName,5);
         fleetPage.vehicleOdoName.click();
         BrowserUtils.waitFor(2);
         fleetPage.vehicleOdoSelect.click();
@@ -32,7 +33,7 @@ public class FleetVehicleOdoStepDefs {
 
     @Then("Enter odometer value")
     public void enter_odometer_value() {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitForVisibility(fleetPage.odoValue,5);
         fleetPage.odoValue.clear();
         fleetPage.odoValue.sendKeys("3000");
     }
@@ -46,9 +47,9 @@ public class FleetVehicleOdoStepDefs {
 
     @Then("Click on Save button")
     public void click_on_Save_button() {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitForClickablility(fleetPage.odoSaveButton,5);
         fleetPage.odoSaveButton.click();
-        BrowserUtils.waitFor(2);
+
     }
 
     @Then("Error message displayed")

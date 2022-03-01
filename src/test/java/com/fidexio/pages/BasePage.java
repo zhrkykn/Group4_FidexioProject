@@ -1,5 +1,6 @@
 package com.fidexio.pages;
 
+
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.Driver;
 import org.openqa.selenium.By;
@@ -101,15 +102,22 @@ public abstract class BasePage {
                 break;
             }
         }
-        String left = "(//ul[@class='oe_secondary_submenu nav nav-pills nav-stacked']//span[contains(text(),'"+leftSideMenu+"')])[1]";
-        new DashboarPage().waitUntilLoaderScreenDisappear();
-        WebElement leftSideWE = Driver.get().findElement(By.xpath(left));
-        leftSideWE.click();
+
+        List<WebElement> sideMenus = Driver.get().findElements(By.xpath("//div[@class='oe_secondary_menu']//li"));
+        BrowserUtils.waitFor(2);
+        for (WebElement sideMenu : sideMenus) {
+            if (sideMenu.getText().equalsIgnoreCase(leftSideMenu)){
+                sideMenu.click();
+                return;
+            }
+        }
+
         new DashboarPage().waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(2);
-
-
-
     }
+
+
+
+
 }
 

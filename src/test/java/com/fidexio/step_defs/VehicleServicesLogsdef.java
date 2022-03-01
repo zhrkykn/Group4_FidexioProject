@@ -1,7 +1,9 @@
 package com.fidexio.step_defs;
 
 import com.fidexio.pages.FleetPage;
+import com.fidexio.utilities.BrowserUtils;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class VehicleServicesLogsdef {
     FleetPage page=new FleetPage();
@@ -15,6 +17,7 @@ public class VehicleServicesLogsdef {
 
     @When("click the create button")
     public void click_the_create_button() {
+        BrowserUtils.waitForVisibility(page.createButton,5);
         page.createButton.click();
 
     }

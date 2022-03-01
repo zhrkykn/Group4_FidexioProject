@@ -12,6 +12,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 //Verify that the user can create a product.
 //Verify that a new product can be found in the search.
 //Verify that all the saved details are listed correctly.
@@ -31,7 +33,7 @@ public class inventorySteps {
     @Given("the user is clicked inventory button")
     public void the_user_is_clicked_inventory_button() {
 
-        invent.nav("Inventory");
+        invent.nav("Inventory","Products");
 
 
     }
@@ -62,10 +64,17 @@ public class inventorySteps {
 
     @Then("Add product name")
     public void add_product_name() {
-        BrowserUtils.waitFor(2);
+
+        BrowserUtils.waitForVisibility(invent.productName,5);
         invent.productName.clear();
-        BrowserUtils.waitFor(2);
         invent.productName.sendKeys("Scientific Calculator");
+        Select dropProductType=new Select(invent.ProductType);
+        BrowserUtils.waitFor(1);
+        dropProductType.selectByVisibleText("Consumable");
+        invent.SalesPrice.clear();
+        invent.SalesPrice.sendKeys("$ 20.00");
+        invent.costForProduct.sendKeys("12332");
+
 
     }
 
@@ -80,11 +89,10 @@ public class inventorySteps {
 
     @Then("Add sales price")
     public void add_sales_price() {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitForClickablility(invent.SalesPrice,5);
         invent.SalesPrice.clear();
-        BrowserUtils.waitFor(2);
         invent.SalesPrice.sendKeys("$ 20.00");
-        BrowserUtils.waitFor(3);
+
     }
 
     @Then("Click on product save button")
@@ -95,11 +103,10 @@ public class inventorySteps {
     @Then("Get the created message")
     public void get_the_created_message() {
 
-//        String expected ="Product Template created";
-//        BrowserUtils.waitFor(2);
-//        String message = invent.CreatedMessage.getText();
-//        BrowserUtils.waitFor(2);
-//        Assert.assertEquals(message,expected);
+       String expected ="Product Template created";
+       BrowserUtils.waitForVisibility(invent.CreatedMessage,5);
+       String message = invent.CreatedMessage.getText();
+       Assert.assertEquals(message,expected);
 
     }
 
@@ -117,6 +124,7 @@ public class inventorySteps {
 
     @Then("click search button")
     public void click_search_button() {
+
         invent.search.click();
 
     }
@@ -154,9 +162,10 @@ public class inventorySteps {
 
         String actualMessage ="$ 20.00";
 
-        String message = invent.price.getText();
+        List<String> pricesString = BrowserUtils.getElementsText(invent.priceS);
+
         BrowserUtils.waitFor(2);
-        Assert.assertEquals(message,actualMessage);
+        Assert.assertTrue("Verify that new item in list", pricesString.contains(actualMessage));
 
     }
 

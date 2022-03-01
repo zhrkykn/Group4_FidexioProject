@@ -1,4 +1,4 @@
-@aa
+@FIDE-698
 Feature: Creation vehicle in Fleet
 
   Background:
@@ -7,12 +7,12 @@ Feature: Creation vehicle in Fleet
     And User navigate to "Fleet"
     And Click on Create button
 
-
+  @FIDE-696
   Scenario: user should be able to create vehicle
     And User enter required info for Vehicle
     And User click on Save Button
     Then User should be able to see new vehicle in list
-
+  @FIDE-697
   Scenario Outline: user shouldn't create a vehicle with missing required info
     When user enters missing information required to create tool "<carName>" "<license>"
     And User click on Save Button

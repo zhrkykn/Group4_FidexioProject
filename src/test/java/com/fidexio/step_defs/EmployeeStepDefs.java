@@ -9,7 +9,7 @@ import org.junit.Assert;
 
 
 public class EmployeeStepDefs {
-    EmployeePage employeePage= new EmployeePage();
+    EmployeePage employeePage = new EmployeePage();
 
     @When("User should go to Employee page")
     public void user_should_go_to_Employee_page() {
@@ -30,16 +30,16 @@ public class EmployeeStepDefs {
 
         String actualTitle = Driver.get().getTitle();
         BrowserUtils.waitFor(2);
-        Assert.assertEquals(expectedTitle,actualTitle);
+        Assert.assertEquals(expectedTitle, actualTitle);
         BrowserUtils.waitFor(2);
     }
 
 
     @Then("User should see {string} information")
     public void user_should_see_information(String expectedText) {
-        String actualText= employeePage.FollowingInfo();
+        String actualText = employeePage.FollowingInfo();
         BrowserUtils.waitFor(5);
-        Assert.assertEquals(actualText,expectedText);
+        Assert.assertEquals(actualText, expectedText);
     }
 
     @When("User enter a Employee Name")
@@ -51,33 +51,28 @@ public class EmployeeStepDefs {
 
     @Then("User click on Save Button")
     public void user_click_on_Save_Button() {
-    employeePage.saveButton.click();
-    //employeePage.clickSave();
+        BrowserUtils.waitForVisibility(employeePage.saveButton, 5);
+        employeePage.saveButton.click();
+        //employeePage.clickSave();
         BrowserUtils.waitFor(2);
     }
 
     @Then("User should see {string} message")
     public void user_should_see_message(String expectedText) {
-        String actualText= employeePage.MessageCreated();
+        String actualText = employeePage.MessageCreated();
         BrowserUtils.waitFor(2);
-        Assert.assertEquals(actualText,expectedText);
+        Assert.assertEquals(actualText, expectedText);
         BrowserUtils.waitFor(2);
     }
 
     @When("User search for {string} and see the name")
     public void user_search_for_and_see_the_name(String ExpectedEmployee) {
 
-        String ActualEmployee= employeePage.newEmployee.getText();
+        String ActualEmployee = employeePage.newEmployee.getText();
         BrowserUtils.waitFor(2);
         Assert.assertEquals(ExpectedEmployee, ActualEmployee);
         BrowserUtils.waitFor(2);
     }
-
-
-
-
-
-
 
 
 }

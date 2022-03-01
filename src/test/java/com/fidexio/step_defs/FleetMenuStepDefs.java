@@ -25,7 +25,7 @@ public class FleetMenuStepDefs {
     @When("the user clicks to fleetPage")
     public void the_user_clicks_to_fleetPage() {
 
-        fleetPage.clickFleet();
+        fleetPage.nav("Fleet","Vehicles Odometer");
     }
 
     @Then("the side menu contains")
