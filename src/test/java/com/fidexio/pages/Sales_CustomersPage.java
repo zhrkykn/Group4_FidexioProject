@@ -74,14 +74,8 @@ public class Sales_CustomersPage extends BasePage {
     @FindBy(css = "o_kanban_record_title oe_partner_heading")
     public WebElement kanbanRecord;
 
-    @FindBy(xpath = "//*[.='The record has been modified, your changes will be discarded. Do you want to proceed?']")
-    public WebElement discardMessagez;
-
     @FindBy(xpath = "//h1/span")
     public WebElement createdName;
-
-    @FindBy(css = "div.modal-body")
-    public WebElement discardMessage;
 
     @FindBy(xpath = "//span[contains(text(),'Ok')]")
     public WebElement discardOK;
