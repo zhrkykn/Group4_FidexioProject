@@ -34,4 +34,4 @@ When User is on Vendor Bills Page
 And user choose existing vendor
 And user click to action button
 Then confirmation message should be display
-Then user click OK button
+Then user click OK
