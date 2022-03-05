@@ -1,4 +1,4 @@
-@fc
+
 Feature: Contacts functions
 
   Background:
@@ -30,14 +30,15 @@ Feature: Contacts functions
     And Click on Discard
     Then User should able to quit without saving
 
-  @fc
+
   Scenario: Verify that the user can edit contact
     When user click any contact
     And Click on Edit button
     And user changes the name
     And Click on Save button
     Then Verify that changed name appear in contact list
-
+  @fc
   Scenario: Verify that the user can delete contact
     When user click any contact
-    And clic
+    And click to Delete
+    Then user shouldn't see name

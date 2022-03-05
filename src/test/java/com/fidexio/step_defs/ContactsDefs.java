@@ -17,9 +17,14 @@ import java.util.stream.IntStream;
 
 public class ContactsDefs {
     Random random = new Random();
-    Faker fakir = new Faker();
-    String name;
+    String delName;
     ContactPage contact = new ContactPage();
+
+    static Faker fakir = new Faker();
+    static String name;
+    static {
+        name = fakir.name().fullName();
+    }
 
     @Given("the user navigates to {string}")
     public void the_user_navigates_to(String string) {
@@ -30,7 +35,7 @@ public class ContactsDefs {
 
     @When("user enters required info for new Contact")
     public void user_enters_required_info_for_new_Contact() {
-        name = fakir.name().fullName();
+        //name = fakir.name().fullName();
         contact.nameForNewContact.sendKeys(name);
     }
 
@@ -88,7 +93,7 @@ public class ContactsDefs {
 
     @When("user click any contact")
     public void user_click_any_contact() {
-        int i = random.nextInt(80);
+        int i = random.nextInt(10,88);
         String path = "(//div[@class='o_view_manager_content']//img)[" + i + "]";
         WebElement anyImage = Driver.get().findElement(By.xpath(path));
         BrowserUtils.waitForClickablility(anyImage, 5);
@@ -115,6 +120,24 @@ public class ContactsDefs {
         contact.nav("Contacts");
         contact.searchingName(name);
         Assert.assertTrue(contact.searchedName.getText().contains(name));
+    }
+
+
+    @When("click to Delete")
+    public void click_to_Delete() {
+        delName = Driver.get().findElement(By.xpath("//span[@name='name']")).getText();
+        contact.actionButton.click();
+        BrowserUtils.waitFor(1);
+        contact.deleteSelection.click();
+        Driver.get().findElement(By.xpath("//span[contains(text(),'Ok')]")).click();
+    }
+
+    @Then("user shouldn't see name")
+    public void user_shouldn_t_see_name() {
+        contact.nav("Contacts");
+        contact.waitUntilLoaderScreenDisappear();
+        contact.searchingName(delName);
+        Assert.assertTrue(Driver.get().findElements(By.xpath("//tr[@class='o_data_row']/td[2]")).size()==0);
     }
 
 }
