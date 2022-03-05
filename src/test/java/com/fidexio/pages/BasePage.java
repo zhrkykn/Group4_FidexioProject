@@ -112,7 +112,7 @@ public abstract class BasePage {
             }
         }
 
-        new DashboarPage().waitUntilLoaderScreenDisappear();
+        waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(2);
     }
 

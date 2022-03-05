@@ -35,18 +35,19 @@ public class EmployeePage extends BasePage {
 
     public void clickButtons(String buttonName){
 
-        if(buttonName.equals("create")){
-            createButton.click();
-        }
-        else if(buttonName.equals("import")){
-            importButton.click();
-        }
-        else if(buttonName.equals("follow")){
-            followButton.click();
-        }
-        else if(buttonName.equals("save")){
-            SaveButton.click();
-        }
+        String path = "//button"
+//        if(buttonName.equals("create")){
+//            createButton.click();
+//        }
+//        else if(buttonName.equals("import")){
+//            importButton.click();
+//        }
+//        else if(buttonName.equals("follow")){
+//            followButton.click();
+//        }
+//        else if(buttonName.equals("save")){
+//            SaveButton.click();
+//        }
 
     }
     public void clickEmployees() {
