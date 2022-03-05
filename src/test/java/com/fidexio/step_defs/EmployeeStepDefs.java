@@ -22,7 +22,7 @@ public class EmployeeStepDefs {
     @Then("Click on {string} button")
     public void user_click_on_button(String buttonName) {
         employeePage.clickButtons(buttonName);
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
     }
 
     @Then("User should see {string} title")

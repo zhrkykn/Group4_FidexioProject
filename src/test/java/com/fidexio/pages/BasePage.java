@@ -16,17 +16,36 @@ import java.util.List;
 
 public abstract class BasePage {
 
-
     @FindBy(css = "div[class='o_loading']")
     @CacheLookup
     protected WebElement loading;
 
-    @FindBy(css = "span[class='oe_topbar_name']")
-    public WebElement userName;
+    //************Buttons for anywhere********************
 
-    //save button for all vehicle page
     @FindBy(xpath = "//button[contains(text(),'Save')]")
     public WebElement saveButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Discard')]")
+    public WebElement DiscardButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Edit')]")
+    public WebElement EditButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Create')]")
+    public WebElement CreateButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Import')]")
+    public WebElement ImportButton;
+
+    @FindBy(xpath = "//Input[contains(@placeholder, 'Search...')]")
+    public WebElement searchBox;
+
+
+
+
+
+    @FindBy(css = "span[class='oe_topbar_name']")
+    public WebElement userName;
 
     @FindBy(linkText = "Log out")
     public WebElement logOutLink;
