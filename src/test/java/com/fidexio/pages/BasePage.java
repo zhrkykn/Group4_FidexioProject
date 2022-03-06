@@ -110,7 +110,7 @@ public abstract class BasePage {
         BrowserUtils.waitFor(2);
         List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
         List<WebElement> elementsMore = new ArrayList<>();
-        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isEnabled()){
+        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isDisplayed()){
             Driver.get().findElement(By.cssSelector("#menu_more_container>a")).click();
             elementsMore = Driver.get().findElements(By.cssSelector("#menu_more_container>ul>li>a>span"));
         }
