@@ -28,7 +28,7 @@ public class ExpensesPage extends BasePage{
     @FindBy(css = "[name=name]")
     public WebElement summaryInput;
 
-    @FindBy(xpath = "//div[3]/table/tbody/tr[1]/td[2]/div/div")
+    @FindBy(xpath = "//div[3]/table/tbody/tr[1]/td[2]/div/div/input")
     public WebElement employeeDropdown;
 
     @FindBy(xpath = "/html/body/ul[1]/li")
@@ -36,6 +36,9 @@ public class ExpensesPage extends BasePage{
 
     @FindBy(xpath = "//button[@accesskey='s']")
     public WebElement saveButton;
+
+    @FindBy(xpath = "//button[@accesskey='j']")
+    public WebElement discardButton;
 
     @FindBy(xpath = "//div[1]/div[2]/div[2]/div/div/div/table/tbody/tr")
     public List<WebElement> reportList;
@@ -49,7 +52,7 @@ public class ExpensesPage extends BasePage{
     @FindBy(xpath = "//div/table/tbody/tr/td[4]")
     public List<WebElement> employeeList;
 
-    @FindBy(xpath = "//div[2]/table/tbody/tr[1]/td/a")
+    @FindBy(xpath = "/html/body/div[5]/div/div/div[2]")
     public WebElement expenseLinesErrorMessage;
 
     @FindBy(xpath = "//div/table/tbody/tr[1]/td[1]/div/input")

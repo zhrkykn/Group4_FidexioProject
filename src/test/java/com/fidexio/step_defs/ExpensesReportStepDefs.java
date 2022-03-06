@@ -2,10 +2,12 @@ package com.fidexio.step_defs;
 
 import com.fidexio.pages.ExpensesPage;
 import com.fidexio.utilities.BrowserUtils;
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -31,6 +33,7 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(2);
 
         // creates expense report
+        Faker faker = new Faker();
         System.out.println("\n---- Starting to create an expense report ----");
         page.expenseReports.click();
         System.out.println("expenseReports clicked");
@@ -38,7 +41,7 @@ public class ExpensesReportStepDefs {
         page.createButton.click();
         System.out.println("createButton clicked");
         BrowserUtils.waitFor(2);
-        String expectedExpenseReportSummary = "Trip to London";
+        String expectedExpenseReportSummary = faker.commerce().productName();
         BrowserUtils.waitFor(1);
         page.summaryInput.sendKeys(expectedExpenseReportSummary);
         BrowserUtils.waitFor(2);
@@ -113,9 +116,12 @@ public class ExpensesReportStepDefs {
     }
 
 
-    @When("The {string} error message is displayed when Expense Report Summary left blank")
-    public void the_error_message_is_displayed_when_Expense_Report_Summary_left_blank(String string) {
-        System.out.println("----- Navigating to Expense Report Create display ------");
+    @When("The {string} {string} error message is displayed when Expense Report Summary left blank")
+    public void the_error_message_is_displayed_when_Expense_Report_Summary_left_blank(String expectedErrorMessage1,String expectedErrorMessage2) {
+        System.out.println("\n----- Navigating to Expense Page ------");
+        BrowserUtils.waitFor(2);
+        page.expensesModule.click();
+        System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
 
         // creates expense report
@@ -161,23 +167,106 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(1);
         page.saveButton.click();
         System.out.println("saveButton clicked");
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(1);
+
+        // this part for assertion
+        //System.out.println("expectedErrorMessage = " + expectedErrorMessage);
+        String actualErrorMessage = page.notification.getText();
+        System.out.println("actualErrorMessage = " + actualErrorMessage);
+        BrowserUtils.waitFor(1);
+        Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage1 + "\n" + expectedErrorMessage2);
+        System.out.println("---- The Blank Summary test PASSED -----");
     }
 
-    @Then("The {string} error message is displayed when Employee left blank")
-    public void the_error_message_is_displayed_when_Employee_left_blank(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("The {string} {string} error message is displayed when Employee left blank")
+    public void the_error_message_is_displayed_when_Employee_left_blank(String expectedErrorMessage1,String expectedErrorMessage2) {
+        Faker faker = new Faker();
+        // creates expense report with a blank employee
+        System.out.println("\n---- Starting to create an expense report with a blank employee----");
+        BrowserUtils.waitFor(1);
+        page.discardButton.click();
+        BrowserUtils.waitFor(1);
+        page.okayButton.click();
+        BrowserUtils.waitFor(1);
+        page.createButton.click();
+        BrowserUtils.waitFor(1);
+        String expectedExpenseReportSummary = faker.commerce().material();
+        BrowserUtils.waitFor(1);
+        page.summaryInput.sendKeys(expectedExpenseReportSummary);
+        System.out.println("summaryInput sent");
+        BrowserUtils.waitFor(1);
+        page.saveButton.click();
+        System.out.println("saveButton clicked");
+        BrowserUtils.waitFor(1);
+
+        // this part for assertion
+        String actualErrorMessage = page.notification.getText();
+        System.out.println("actualErrorMessage = " + actualErrorMessage);
+        BrowserUtils.waitFor(2);
+
+        Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage1 + "\n" + expectedErrorMessage2);
+        System.out.println("---- The Blank Employee test PASSED -----");
     }
 
 
 
     @Then("The {string} error message is displayed when selecting expenses of another employee when approving an expense on Expenses to Approve page.")
-    public void the_error_message_is_displayed_when_selecting_expenses_of_another_employee_when_approving_an_expense_on_Expenses_to_Approve_page(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_error_message_is_displayed_when_selecting_expenses_of_another_employee_when_approving_an_expense_on_Expenses_to_Approve_page(String expectedErrorMessage) {
+        System.out.println("----- Navigating to Expense Page ------");
+        BrowserUtils.waitFor(2);
+        page.expensesModule.click();
+        System.out.println("expensesModule clicked");
+        BrowserUtils.waitFor(2);
+        Faker faker = new Faker();
+
+        // creates expense report
+        System.out.println("\n---- Starting to create an expense report with the expense line with an unmatched name----");
+        page.expenseReports.click();
+        System.out.println("expenseReports clicked");
+        BrowserUtils.waitFor(2);
+        page.createButton.click();
+        System.out.println("createButton clicked");
+        BrowserUtils.waitFor(2);
+        String expectedExpenseReportSummary = faker.commerce().material();
+        BrowserUtils.waitFor(1);
+        page.summaryInput.sendKeys(expectedExpenseReportSummary);
+        System.out.println("summaryInput sent");
+        BrowserUtils.waitFor(2);
+        page.employeeDropdown.click();
+        BrowserUtils.waitFor(1);
+        WebElement employeeSelected = page.employeeDropdownOptions.get((int) ((Math.random() * 6)+1));
+        BrowserUtils.waitFor(1);
+        String employeeName = employeeSelected.getText();
+        BrowserUtils.waitFor(1);
+        employeeSelected.click();
+        System.out.println("employee selected AS " + employeeName);
+        BrowserUtils.waitFor(1);
+        page.addItemExpense.click();
+        System.out.println("addItemExpense clicked");
+        BrowserUtils.waitFor(2);
+        List<String> employeeNameList = BrowserUtils.getElementsText(page.employeeList);
+
+        for (WebElement e: page.employeeList) {
+            if (!e.getText().equals(employeeName)) {
+                String name = e.getText();
+                System.out.println("employeeName on the Expense Lines found AS " + name);
+                BrowserUtils.waitFor(1);
+                e.click();
+                break;
+            }
+        }
+
+        BrowserUtils.waitFor(1);
+        page.saveButton.click();
+        System.out.println("saveButton clicked");
+        BrowserUtils.waitFor(1);
+
+        // this part for assertion
+        String actualErrorMessage = page.expenseLinesErrorMessage.getText();
+        System.out.println("actualErrorMessage = " + actualErrorMessage);
+        BrowserUtils.waitFor(1);
+        Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage);
+        System.out.println("\n---- The expense line with an unmatched name test PASSED -----");
     }
-
-
 
 }
