@@ -119,6 +119,7 @@ public class CRM_QuotationsPage extends BasePage{
 
     }
 
+
     //    public void getViewType(String viewName) {
 //
 //        if (viewName.equalsIgnoreCase("kanban")){
