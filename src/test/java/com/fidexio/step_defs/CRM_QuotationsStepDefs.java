@@ -68,6 +68,7 @@ public class CRM_QuotationsStepDefs {
 
         quotationsPage.beforeQuotationSize = quotationsPage.quotationCounter.getText();
         System.out.println("Before Quotation Size = " + quotationsPage.beforeQuotationSize);
+
     }
 
 
