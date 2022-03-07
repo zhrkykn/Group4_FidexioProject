@@ -1,7 +1,9 @@
 package com.fidexio.step_defs;
 
+import com.fidexio.pages.BasePage;
 import com.fidexio.pages.ExpensesPage;
 import com.fidexio.utilities.BrowserUtils;
+import com.fidexio.utilities.ConfigurationReader;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,11 +19,16 @@ public class ExpensesReportStepDefs {
 
     ExpensesPage page = new ExpensesPage();
 
+
     @Then("The user creates an Expenses Report Summary for each employee")
     public void the_user_creates_an_Expenses_Report_Summary_for_each_employee() {
         System.out.println("----- Navigating to Expense Report Create display ------");
         BrowserUtils.waitFor(2);
-        page.expensesModule.click();
+        //page.expensesModule.click();
+        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
+            page.expensesModule.click();
+        }
+        else page.nav("Expenses");
         System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
 
@@ -113,7 +120,10 @@ public class ExpensesReportStepDefs {
     public void the_error_message_is_displayed_when_Expense_Report_Summary_left_blank(String expectedErrorMessage1,String expectedErrorMessage2) {
         System.out.println("\n----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
-        page.expensesModule.click();
+        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
+            page.expensesModule.click();
+        }
+        else page.nav("Expenses");
         System.out.println("expensesModule clicked");
 
 
@@ -208,7 +218,10 @@ public class ExpensesReportStepDefs {
     public void the_error_message_is_displayed_when_selecting_expenses_of_another_employee_when_approving_an_expense_on_Expenses_to_Approve_page(String expectedErrorMessage) {
         System.out.println("----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
-        page.expensesModule.click();
+        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
+            page.expensesModule.click();
+        }
+        else page.nav("Expenses");
         System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
         Faker faker = new Faker();
