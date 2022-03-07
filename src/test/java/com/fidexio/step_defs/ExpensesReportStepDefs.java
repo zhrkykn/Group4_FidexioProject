@@ -17,26 +17,29 @@ import java.util.List;
 
 public class ExpensesReportStepDefs {
 
+    static List<String> expenseReportToApproveListBefore;
     ExpensesPage page = new ExpensesPage();
 
-
-    @Then("The user creates an Expenses Report Summary for each employee")
-    public void the_user_creates_an_Expenses_Report_Summary_for_each_employee() {
-        System.out.println("----- Navigating to Expense Report Create display ------");
+    @When("The user navigates to Expenses Report")
+    public void the_user_navigates_to_Expenses_Report() {
+        System.out.println("\n----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
-        //page.expensesModule.click();
         if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
             page.expensesModule.click();
         }
         else page.nav("Expenses");
         System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
+    }
 
+    @When("The user enters summary details")
+    public void the_user_enters_summary_details() {
+        System.out.println("----- Navigating to Expense Report Create display ------");
         // holds expense report size
         page.toApprove.click();
         System.out.println("toApprove clicked");
         BrowserUtils.waitFor(1);
-        List<String> expenseReportToApproveListBefore = BrowserUtils.getElementsText(page.reportList);
+        expenseReportToApproveListBefore = BrowserUtils.getElementsText(page.reportList);
         BrowserUtils.waitFor(2);
 
         // creates expense report
@@ -62,33 +65,13 @@ public class ExpensesReportStepDefs {
         employeeSelected.click();
         System.out.println("employee selected AS " + employeeName);
         BrowserUtils.waitFor(1);
-        page.addItemExpense.click();
-        System.out.println("addItemExpense clicked");
-        BrowserUtils.waitFor(2);
-        List<String> employeeNameList = BrowserUtils.getElementsText(page.employeeList);
-
-        while (!employeeNameList.contains(employeeName)) {
-            page.nextPageExpenseLines.click();
-            System.out.println("nextPageExpenseLines clicked");
-            BrowserUtils.waitFor(2);
-            employeeNameList = BrowserUtils.getElementsText(page.employeeList);
-            BrowserUtils.waitFor(2);
-        }
-
-        for (WebElement e: page.employeeList) {
-            if (e.getText().equals(employeeName)) {
-                String name = e.getText();
-                System.out.println("employeeName on the Expense Lines found AS " + name);
-                BrowserUtils.waitFor(1);
-                e.click();
-                break;
-            }
-        }
-
-        BrowserUtils.waitFor(1);
         page.saveButton.click();
         System.out.println("saveButton clicked");
         BrowserUtils.waitFor(2);
+    }
+
+    @Then("The expense report summary should be created")
+    public void the_expense_report_summary_should_be_created() {
 
         // this part for assertion
         page.toApprove.click();
@@ -112,21 +95,10 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(1);
         page.okayButton.click();
         System.out.println("\n----- The created Expense Report has been deleted ------");
-
     }
 
-
-    @When("The {string} {string} error message is displayed when Expense Report Summary left blank")
-    public void the_error_message_is_displayed_when_Expense_Report_Summary_left_blank(String expectedErrorMessage1,String expectedErrorMessage2) {
-        System.out.println("\n----- Navigating to Expense Page ------");
-        BrowserUtils.waitFor(2);
-        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
-            page.expensesModule.click();
-        }
-        else page.nav("Expenses");
-        System.out.println("expensesModule clicked");
-
-
+    @When("The user enters summary details with a blank summary")
+    public void the_user_enters_summary_details_with_a_blank_summary() {
         // creates expense report
         System.out.println("\n---- Starting to create an expense report with a blank summary----");
         BrowserUtils.waitFor(2);
@@ -145,34 +117,13 @@ public class ExpensesReportStepDefs {
         employeeSelected.click();
         System.out.println("employee selected AS " + employeeName);
         BrowserUtils.waitFor(1);
-        page.addItemExpense.click();
-        System.out.println("addItemExpense clicked");
-        BrowserUtils.waitFor(2);
-        List<String> employeeNameList = BrowserUtils.getElementsText(page.employeeList);
-
-        while (!employeeNameList.contains(employeeName)) {
-            page.nextPageExpenseLines.click();
-            System.out.println("nextPageExpenseLines clicked");
-            BrowserUtils.waitFor(2);
-            employeeNameList = BrowserUtils.getElementsText(page.employeeList);
-            BrowserUtils.waitFor(2);
-        }
-
-        for (WebElement e: page.employeeList) {
-            if (e.getText().equals(employeeName)) {
-                String name = e.getText();
-                System.out.println("employeeName on the Expense Lines found AS " + name);
-                BrowserUtils.waitFor(1);
-                e.click();
-                break;
-            }
-        }
-
-        BrowserUtils.waitFor(1);
         page.saveButton.click();
         System.out.println("saveButton clicked");
         BrowserUtils.waitFor(1);
+    }
 
+    @Then("The {string} {string} error message should be displayed")
+    public void the_error_message_should_be_displayed(String expectedErrorMessage1,String expectedErrorMessage2) {
         // this part for assertion
         //System.out.println("expectedErrorMessage = " + expectedErrorMessage);
         String actualErrorMessage = page.notification.getText();
@@ -182,8 +133,9 @@ public class ExpensesReportStepDefs {
         System.out.println("---- The Blank Summary test PASSED -----");
     }
 
-    @Then("The {string} {string} error message is displayed when Employee left blank")
-    public void the_error_message_is_displayed_when_Employee_left_blank(String expectedErrorMessage1,String expectedErrorMessage2) {
+
+    @When("The user enters summary details with a blank employee")
+    public void the_user_enters_summary_details_with_a_blank_employee() {
         Faker faker = new Faker();
         // creates expense report with a blank employee
         System.out.println("\n---- Starting to create an expense report with a blank employee----");
@@ -202,27 +154,11 @@ public class ExpensesReportStepDefs {
         page.saveButton.click();
         System.out.println("saveButton clicked");
         BrowserUtils.waitFor(1);
-
-        // this part for assertion
-        String actualErrorMessage = page.notification.getText();
-        System.out.println("actualErrorMessage = " + actualErrorMessage);
-        BrowserUtils.waitFor(2);
-
-        Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage1 + "\n" + expectedErrorMessage2);
-        System.out.println("---- The Blank Employee test PASSED -----");
     }
 
 
-
-    @Then("The {string} error message is displayed when selecting expenses of another employee when approving an expense on Expenses to Approve page.")
-    public void the_error_message_is_displayed_when_selecting_expenses_of_another_employee_when_approving_an_expense_on_Expenses_to_Approve_page(String expectedErrorMessage) {
-        System.out.println("----- Navigating to Expense Page ------");
-        BrowserUtils.waitFor(2);
-        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
-            page.expensesModule.click();
-        }
-        else page.nav("Expenses");
-        System.out.println("expensesModule clicked");
+    @When("The user adds an expense line with an employee name unmatched")
+    public void the_user_adds_an_expense_line_with_an_employee_name_unmatched() {
         BrowserUtils.waitFor(2);
         Faker faker = new Faker();
 
@@ -266,8 +202,11 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(1);
         page.saveButton.click();
         System.out.println("saveButton clicked");
-        BrowserUtils.waitFor(1);
+    }
 
+
+    @Then("The {string} error message should be displayed")
+    public void the_error_message_should_be_displayed(String expectedErrorMessage) {
         // this part for assertion
         String actualErrorMessage = page.expenseLinesErrorMessage.getText();
         System.out.println("actualErrorMessage = " + actualErrorMessage);
@@ -275,5 +214,4 @@ public class ExpensesReportStepDefs {
         Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage);
         System.out.println("\n---- The expense line with an unmatched employee test PASSED -----");
     }
-
 }
