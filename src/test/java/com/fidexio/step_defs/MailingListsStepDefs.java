@@ -82,4 +82,15 @@ public class MailingListsStepDefs {
 
 
     }
+
+    @Then("user verifies the Mailing List has been deleted")
+    public void userVerifiesTheMailingListHasBeenDeleted() {
+        mailingLists.afterSize=mailingLists.counter.getText();
+
+        System.out.println("BeforeSize = " + mailingLists.beforeSize);
+        System.out.println("AfterSize = " + mailingLists.afterSize);
+
+        Assert.assertNotEquals(mailingLists.afterSize,mailingLists.beforeSize);
+
+    }
 }
