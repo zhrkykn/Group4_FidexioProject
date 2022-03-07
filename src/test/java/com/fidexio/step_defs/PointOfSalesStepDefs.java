@@ -10,9 +10,14 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 
-public class PointOfSalesStepDefs {
+
+public class PointOfSalesStepDefs{
 
     PointOfSalePage pointOfSalePage= new PointOfSalePage();
+
+    static String InitialName;
+
+
 
 
     @When("User should go to PointOfSale page and click PointOfSale sideMenu")
@@ -36,22 +41,25 @@ public class PointOfSalesStepDefs {
         BrowserUtils.waitFor(3);
     }
 
+    @And("User choose Operation Type")
+    public void userChooseOperationType() {
+        pointOfSalePage.OperationType.click();
+        BrowserUtils.waitFor(2);
+        pointOfSalePage.OperationTypeDropDowns.get(4).click();
+
+    }
+
     @Then("Page title should contain {string}")
     public void pageTitleShouldContain(String name) {
-
+        BrowserUtils.waitFor(3);
+        pointOfSalePage.EditButton.click();
+        BrowserUtils.waitFor(2);
         String expectedName=pointOfSalePage.NameBox.getText();
-        Assert.assertTrue(Driver.get().getTitle().contains(expectedName));
-
-
-    }
-
-    @Then("User should see Create button")
-    public void userShouldSeeCreateButton() {
-
-        Assert.assertTrue("create button cannot displayed", pointOfSalePage.CreateButton.isDisplayed());
-
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue("faker name is seen", Driver.get().getTitle().contains(expectedName));
 
     }
+
 
     @Then("User should verify that page link includes Kanban")
     public void userShouldVerifyThatPageLinkIncludesKanban() {
@@ -62,21 +70,22 @@ public class PointOfSalesStepDefs {
 
         BrowserUtils.waitFor(3);
 
-
     }
 
     @Then("User get the name of the Point of Sale")
-    static public String userGetTheNameOfThePointOfSale() {
-        String currentName= Driver.get().getTitle();
-        return currentName;
+    public void userGetTheNameOfThePointOfSale() {
+        BrowserUtils.waitFor(3);
+       InitialName= Driver.get().getTitle();
+        BrowserUtils.waitFor(3);
+
     }
     @Then("Name of the PointOfSale should not be changed")
     public void nameOfThePointOfSaleShouldNotBeChanged() {
         BrowserUtils.waitFor(3);
-        String previousName= userGetTheNameOfThePointOfSale();
+
         String afterName= Driver.get().getTitle();
-        Assert.assertEquals(previousName, afterName);
-        //Assert.assertTrue(Driver.get().getTitle().equalsIgnoreCase(userGetTheNameOfThePointOfSale()));
+
+        Assert.assertTrue("title should be same", InitialName.equalsIgnoreCase(afterName));
         BrowserUtils.waitFor(3);
 
     }
@@ -86,9 +95,28 @@ public class PointOfSalesStepDefs {
     public void nameOfThePointOfSaleShouldBeChanged() {
 
         BrowserUtils.waitFor(3);
-        Assert.assertTrue(Driver.get().getTitle().equalsIgnoreCase(userGetTheNameOfThePointOfSale()));
+        String afterName= Driver.get().getTitle();
+        BrowserUtils.waitFor(2);
+        Assert.assertFalse("title should be different", InitialName.equalsIgnoreCase(afterName));
+        //Assert.assertNotEquals(InitialName, afterName);
         BrowserUtils.waitFor(3);
-        //Assert.assertNotEquals(Driver.get().getTitle(), userGetTheNameOfThePointOfSale());
+
+    }
+
+
+    @Then("User click on Delete under Actions dropdown button")
+    public void userClickOnDeleteUnderActionsDropdownButton() {
+
+        pointOfSalePage.DropDown();
+
+
+    }
+
+    @Then("User should see the message")
+    public void userShouldSeeTheMessage() {
+
+     Assert.assertTrue(pointOfSalePage.ErrorMessage.isDisplayed());
+
 
     }
 
