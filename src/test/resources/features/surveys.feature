@@ -1,4 +1,4 @@
-@fc
+
 Feature: As a posmanager, I should be able to create and design a new survey from "Surveys" module
 
   Background:

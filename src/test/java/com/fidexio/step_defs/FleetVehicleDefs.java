@@ -3,6 +3,7 @@ package com.fidexio.step_defs;
 import com.fidexio.pages.FleetPage;
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.Driver;
+import com.github.javafaker.Faker;
 import io.cucumber.java.bs.A;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
@@ -13,6 +14,8 @@ import java.util.List;
 
 public class FleetVehicleDefs {
     FleetPage fleet = new FleetPage();
+    Faker faker = new Faker();
+    String fakeString;
 
     @Given("User navigate to {string}")
     public void user_navigate_to(String string) {
@@ -27,7 +30,9 @@ public class FleetVehicleDefs {
         fleet.carModelVehicle.click();
         BrowserUtils.waitFor(1);
         Driver.get().findElement(By.xpath("//li[@class='ui-menu-item'][3]")).click();
-        fleet.licensePlateVehicle.sendKeys("This is group4.");
+        fakeString = faker.pokemon().name();
+        System.out.println("fakeString = " + fakeString);
+        fleet.licensePlateVehicle.sendKeys(fakeString);
     }
 
     @Then("User should be able to see new vehicle in list")
