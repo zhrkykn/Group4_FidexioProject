@@ -88,13 +88,6 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(1);
         List<String> expenseReportToApproveListAfter = BrowserUtils.getElementsText(page.reportList);
         BrowserUtils.waitFor(1);
-//        for (String s: expenseReportToApproveListAfter) {
-//            System.out.println("expenseReportToApproveListAfter = " + s);
-//        }
-//        System.out.println("");
-//        for (String s: expenseReportToApproveListBefore) {
-//            System.out.println("expenseReportToApproveListBefore = " + s);
-//        }
         Assert.assertEquals("Verify that expense report list is increased 1", expenseReportToApproveListBefore.size(), expenseReportToApproveListAfter.size()-1);
         BrowserUtils.waitFor(1);
         expenseReportToApproveListAfter.remove(0);
@@ -122,10 +115,11 @@ public class ExpensesReportStepDefs {
         BrowserUtils.waitFor(2);
         page.expensesModule.click();
         System.out.println("expensesModule clicked");
-        BrowserUtils.waitFor(2);
+
 
         // creates expense report
         System.out.println("\n---- Starting to create an expense report with a blank summary----");
+        BrowserUtils.waitFor(2);
         page.expenseReports.click();
         System.out.println("expenseReports clicked");
         BrowserUtils.waitFor(2);
@@ -220,7 +214,7 @@ public class ExpensesReportStepDefs {
         Faker faker = new Faker();
 
         // creates expense report
-        System.out.println("\n---- Starting to create an expense report with the expense line with an unmatched name----");
+        System.out.println("\n---- Starting to create an expense report with the expense line with an unmatched employee ----");
         page.expenseReports.click();
         System.out.println("expenseReports clicked");
         BrowserUtils.waitFor(2);
@@ -266,7 +260,7 @@ public class ExpensesReportStepDefs {
         System.out.println("actualErrorMessage = " + actualErrorMessage);
         BrowserUtils.waitFor(1);
         Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage);
-        System.out.println("\n---- The expense line with an unmatched name test PASSED -----");
+        System.out.println("\n---- The expense line with an unmatched employee test PASSED -----");
     }
 
 }

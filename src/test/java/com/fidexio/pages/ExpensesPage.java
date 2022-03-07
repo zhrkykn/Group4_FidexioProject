@@ -16,7 +16,7 @@ public class ExpensesPage extends BasePage{
     @FindBy(xpath = "//nav/div[2]/ul[1]/li[9]/a")
     public WebElement expensesModule;
 
-    @FindBy(xpath = "//div[1]/div[9]/ul[1]/li[3]/a")
+    @FindBy(xpath = "//div[9]/ul[1]/li[3]/a")
     public WebElement expenseReports;
 
     @FindBy(xpath = "//div[1]/div[9]/ul[2]/li/a")
