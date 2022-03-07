@@ -61,6 +61,7 @@ public class FleetVehicleOdoStepDefs {
         Assert.assertEquals(message,actualMessage);
         */
         String expect = "The following fields are invalid:";
+        BrowserUtils.waitForVisibility(fleetPage.vehErr,5);
         String actual = fleetPage.vehErr.getText();
         BrowserUtils.waitFor(1);
         Assert.assertEquals("Verify that error message",expect,actual);

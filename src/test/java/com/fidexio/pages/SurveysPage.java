@@ -57,6 +57,7 @@ public class SurveysPage extends BasePage {
             case "Create":
                 BrowserUtils.waitForClickablility(createButton,5);
                 createButton.click();
+                BrowserUtils.waitFor(5);
                 break;
 
             case "Import" :
