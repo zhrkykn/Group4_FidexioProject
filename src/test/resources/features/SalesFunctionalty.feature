@@ -2,7 +2,7 @@ Feature:
 Scenario:verify that all buttons work as expected at the Customers design stage
 
     Given sales functionality should be logged in
-    And sales functionality clicks on Sales and Customers
+    And sales functionality clicks on Sales and Functionality
 
 
   Scenario: Verify that the page title changed the customer name and address.
