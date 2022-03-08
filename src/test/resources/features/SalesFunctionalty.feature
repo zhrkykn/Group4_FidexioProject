@@ -1,6 +1,6 @@
-Feature: As a Sales Functionality, I should be able to create and edit new customers from "Sales" module
+Feature:
+Scenario:verify that all buttons work as expected at the Customers design stage
 
-  Background:
     Given sales functionality should be logged in
     And sales functionality clicks on Sales and Customers
 
