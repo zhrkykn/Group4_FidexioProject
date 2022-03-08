@@ -23,12 +23,12 @@ Feature: Sales Manager should be able to create CRM/QUOTATIONS
     When user clicks on the "List" button
     Then verify that it switched to "List" view
 
-Scenario: Verify that the user can delete QUOTATIONS
-  When user clicks on a random quotation
-  And user clicks on the "cancel" button
-  And user opens Actions dropdown and clicks Delete
-  And user clicks on the "Ok" button
-  Then user verifies the quotation has been deleted
+  Scenario: Verify that the user can delete QUOTATIONS
+    When user clicks on a random quotation
+    And user clicks on the "cancel" button
+    And user opens Actions dropdown and clicks Delete
+    And user clicks on the "Ok" button
+    Then user verifies the quotation has been deleted
 
   Scenario: Verify that sales manager can edit quotations
     When user clicks on a random quotation
