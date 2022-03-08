@@ -1,15 +1,9 @@
 package com.fidexio.pages;
 
 import com.fidexio.utilities.BrowserUtils;
-import com.github.dockerjava.api.model.Driver;
 import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
