@@ -3,7 +3,7 @@ Feature: Expense Report Summary
 
   Background:
     Given The user logged in as a "expenses manager"
-    When The user navigates to the Expenses module
+    When The user clicks on the Expenses from modules
 
   @FIDE-730
   Scenario:  Verify that the Expense Manager is able to create Expenses Report Summary by selecting "Create" option for each Employee.

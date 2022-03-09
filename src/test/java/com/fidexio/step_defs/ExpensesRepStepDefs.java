@@ -22,8 +22,8 @@ public class ExpensesRepStepDefs {
     ExpensesPage page = new ExpensesPage();
     Faker faker = new Faker();
 
-    @When("The user navigates to the Expenses module")
-    public void the_user_navigates_to_the_Expenses_module() {
+    @When("The user clicks on the Expenses from modules")
+    public void the_user_clicks_on_the_Expenses_from_modules() {
         System.out.println("\n----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
         if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
