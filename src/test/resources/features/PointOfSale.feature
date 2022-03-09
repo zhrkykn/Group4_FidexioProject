@@ -1,4 +1,3 @@
-@FIDE-744
 Feature: Point Of Sale Configuration
 
   Background: Login as a user with valid credentials
@@ -40,6 +39,3 @@ Feature: Point Of Sale Configuration
     Then User click on Delete under Actions dropdown button
     Then User click on "pop-up OK" button
     Then User should see the message
-
-
-
