@@ -2,7 +2,7 @@
 Feature: Expense Report Summary
 
   Background:
-    Given the user logged in as a "expenses manager"
+    Given The user logged in as a "expenses manager"
     When The user navigates to the Expenses module
 
   @FIDE-730
@@ -13,7 +13,7 @@ Feature: Expense Report Summary
     When The user clicks on the Create button
     And The user enters the summary
     Then The user clicks on the employee input
-    Then The user selects on the employee dropdown
+    Then The user selects an employee from dropdown
     And The user clicks on the Save button
     And The user clicks on the Summary Report to Approve button
     Then The user creates an expense report after list
@@ -28,7 +28,7 @@ Feature: Expense Report Summary
     When The user clicks on the Expense Report button
     When The user clicks on the Create button
     Then The user clicks on the employee input
-    Then The user selects on the employee dropdown
+    Then The user selects an employee from dropdown
     And The user clicks on the Save button
     Then Verify that the "The following fields are invalid:" "Expense Report Summary" error message is displayed
     When The user clicks on the Discard button
@@ -44,7 +44,9 @@ Feature: Expense Report Summary
     When The user clicks on the Create button
     And The user enters the summary
     Then The user clicks on the employee input
-    Then The user selects on the employee dropdown
+    Then The user selects an employee from dropdown
+    And The user holds the selected employee name
+    Then The user clicks on the selected employee name
     And The user clicks on the Add Item Expense
     And The user clicks on the list of an unmatched employee name
     And The user clicks on the Save button

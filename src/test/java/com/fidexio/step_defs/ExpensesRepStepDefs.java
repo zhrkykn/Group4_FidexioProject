@@ -13,9 +13,11 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ExpensesRepStepDefs {
+
     static List<String> expenseReportToApproveListBefore;
     static List<String> expenseReportToApproveListAfter;
     static String employeeName;
+    static WebElement employeeSelected;
 
     ExpensesPage page = new ExpensesPage();
     Faker faker = new Faker();
@@ -74,14 +76,23 @@ public class ExpensesRepStepDefs {
         BrowserUtils.waitFor(1);
         page.employeeDropdown.click();
     }
-    @Then("The user selects on the employee dropdown")
-    public void the_user_selects_on_the_employee_dropdown() {
-        WebElement employeeSelected = page.employeeDropdownOptions.get((int) ((Math.random() * 6)+1));
+    @Then("The user selects an employee from dropdown")
+    public void the_user_selects_an_employee_from_dropdown() {
+        int indexEmployee = (int) ((Math.random() * 6)+1);
+        employeeSelected = page.employeeDropdownOptions.get(indexEmployee);
+    }
+
+    @Then("The user holds the selected employee name")
+    public void the_user_holds_the_selected_employee_name() {
         BrowserUtils.waitFor(1);
         employeeName = employeeSelected.getText();
+        System.out.println("employee selected AS " + employeeName);
+    }
+
+    @Then("The user clicks on the selected employee name")
+    public void the_user_clicks_on_the_selected_employee_name() {
         BrowserUtils.waitFor(1);
         employeeSelected.click();
-        System.out.println("employee selected AS " + employeeName);
     }
 
     @Then("The user clicks on the Save button")
