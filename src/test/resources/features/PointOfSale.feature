@@ -1,5 +1,5 @@
-
 Feature: Point Of Sale Configuration
+
   Background: Login as a user with valid credentials
     Given the user is on the login page
     Then Enter the user credentials

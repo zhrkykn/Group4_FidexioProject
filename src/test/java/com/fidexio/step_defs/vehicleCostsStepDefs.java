@@ -17,6 +17,7 @@ public class vehicleCostsStepDefs {
 
     @Then("Click on Vehicle Costs Create button")
     public void click_on_Vehicle_Costs_Create_button() {
+        fleetPage.waitUntilLoaderScreenDisappear();
         fleetPage.vehicleCostsCreate.click();
     }
 
