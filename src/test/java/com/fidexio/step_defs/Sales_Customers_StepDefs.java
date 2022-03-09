@@ -25,33 +25,33 @@ public class Sales_Customers_StepDefs {
     FleetPage fleetPage = new FleetPage();
 
 
-    @Given("sales manager should be logged in")
-    public void sales_manager_should_be_logged_in() {
-
-        Driver.get().get(ConfigurationReader.get("url"));
-        new LoginPage().login(ConfigurationReader.get("salesManager"), ConfigurationReader.get("passwordSales"));
-    }
-
-    @And("sales manager clicks on Sales and Customers")
-    public void salesManagerClicksOnSalesAndCustomers() {
-
-//            salesCustomersPage.waitUntilLoaderScreenDisappear();
-//            salesCustomersPage.nav("sales","Customers");
-//            salesCustomersPage.waitUntilLoaderScreenDisappear();
+//    @Given("sales manager should be logged in")
+//    public void sales_manager_should_be_logged_in() {
 //
-//        }THIS DID NOT WORK
+//        Driver.get().get(ConfigurationReader.get("url"));
+//        new LoginPage().login(ConfigurationReader.get("salesManager"), ConfigurationReader.get("passwordSales"));
+//    }
 
-
-        salesCustomersPage.waitUntilLoaderScreenDisappear();
-        salesCustomersPage.salesMenu.click();
-
-        BrowserUtils.waitForPageToLoad(5);
-        salesCustomersPage.waitUntilLoaderScreenDisappear();
-
-        salesCustomersPage.customersMenu.click();
-        salesCustomersPage.waitUntilLoaderScreenDisappear();
-        BrowserUtils.waitForPageToLoad(6);
-    }
+//    @And("sales manager clicks on Sales and Customers")
+//    public void salesManagerClicksOnSalesAndCustomers() {
+//
+////            salesCustomersPage.waitUntilLoaderScreenDisappear();
+////            salesCustomersPage.nav("sales","Customers");
+////            salesCustomersPage.waitUntilLoaderScreenDisappear();
+////
+////        }THIS DID NOT WORK
+//
+//
+//        salesCustomersPage.waitUntilLoaderScreenDisappear();
+//        salesCustomersPage.salesMenu.click();
+//
+//        BrowserUtils.waitForPageToLoad(5);
+//        salesCustomersPage.waitUntilLoaderScreenDisappear();
+//
+//        salesCustomersPage.customersMenu.click();
+//        salesCustomersPage.waitUntilLoaderScreenDisappear();
+//        BrowserUtils.waitForPageToLoad(6);
+//    }
 
     @When("sales manager clicks the first result link from customers list")
     public void salesManagerClicksTheFirstResultLinkFromCustomersList() {
