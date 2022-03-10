@@ -1,20 +1,45 @@
 package com.fidexio.step_defs;
 
+import com.fidexio.pages.CRM_QuotationsPage;
+import com.fidexio.pages.MassMailingsPage;
+import com.fidexio.pages.SurveysPage;
+import com.fidexio.utilities.BrowserUtils;
+import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class MassMailingsStepDefs {
+    MassMailingsPage massMailingsPage=new MassMailingsPage();
+
+    CRM_QuotationsPage massMailings= new CRM_QuotationsPage();
+
+    @When("the user clicks on the {string} button in the Mass Mailings")
+    public void theUserClicksOnTheButtonInTheMassMailings(String ButtonType) {
+        massMailings.clickButtons(ButtonType);
+
+    }
+
 
     @When("user enters subject name as {string}")
-    public void user_enters_subject_name_as(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_enters_subject_name_as(String subjectTitle) {
+        BrowserUtils.waitFor(5);
+        massMailingsPage.subjectBox.sendKeys(subjectTitle);
+
+
     }
 
     @Then("verify that title changes to {string}")
-    public void verify_that_title_changes_to(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void verify_that_title_changes_to(String expectedTitle) {
+        massMailingsPage.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitFor(5);
+        String actualTitle= Driver.get().getTitle();
+
+        System.out.println("actualTitle = " + actualTitle);
+        System.out.println("expectedTitle = " + expectedTitle);
+
+        Assert.assertEquals(expectedTitle,actualTitle);
+
     }
 
     @When("user clicks on a random Mass mailings")
@@ -66,4 +91,5 @@ public class MassMailingsStepDefs {
     }
 
 
-    }
+
+}
