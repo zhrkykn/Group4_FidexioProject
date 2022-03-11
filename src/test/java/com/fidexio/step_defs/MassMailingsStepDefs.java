@@ -17,7 +17,9 @@ public class MassMailingsStepDefs {
 
     @When("the user clicks on the {string} button in the Mass Mailings")
     public void theUserClicksOnTheButtonInTheMassMailings(String ButtonType) {
+        BrowserUtils.waitFor(10);
         massMailings.clickButtons(ButtonType);
+        BrowserUtils.waitFor(5);
 
     }
 
@@ -75,30 +77,49 @@ public class MassMailingsStepDefs {
 
     }
 
-    @When("the user clicks on the {string} from the pop up button")
-    public void the_user_clicks_on_the_from_the_pop_up_button(String string) {
-
-
-    }
 
     @Then("user verifies the Subject name has not been changed")
     public void user_verifies_the_Subject_name_has_not_been_changed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String actualName=  massMailingsPage.editedName.getText();
+        String expectedName= "Fifth Newsletter";
+
+        massMailingsPage.nav("Email Marketings", "Mass Mailings");
+
+        for (WebElement list: massMailingsPage.massMailingList) {
+            if(list.getText().equals(actualName)){
+                Assert.assertNotEquals(list.getText(),expectedName);
+                System.out.println("expectedName = " + expectedName);
+                System.out.println("list.getText() = " + list.getText());
+            }
+
+        }
+
     }
 
     @When("the user opens Actions dropdown and clicks Delete")
     public void the_user_opens_Actions_dropdown_and_clicks_Delete() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        massMailings.getActionDelete();
+
+       MassMailingsPage.beforeMassSize = massMailingsPage.countMailings.getText();
+            System.out.println("Before Mass Mailings Size = " + MassMailingsPage.beforeMassSize);
+
     }
+
 
     @Then("verify that  Mass Mailings  has been deleted")
     public void verify_that_Mass_Mailings_has_been_deleted() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(2);
+        String afterMassSize = massMailingsPage.countMailings.getText();
+        Assert.assertNotEquals(afterMassSize,MassMailingsPage.beforeMassSize);
+
+
+
     }
 
 
 
-}
+    }
+
+
+
+

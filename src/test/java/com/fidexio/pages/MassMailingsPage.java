@@ -22,6 +22,13 @@ public class MassMailingsPage extends BasePage {
     @FindBy(xpath = "//span[@name='name']")
     public WebElement editedName;
 
+    @FindBy(xpath = "//span[@class='o_pager_limit']")
+    public WebElement countMailings;
+
+
+   public static String beforeMassSize;
+
+
 
     public void getRandomMassMailing(){
 
