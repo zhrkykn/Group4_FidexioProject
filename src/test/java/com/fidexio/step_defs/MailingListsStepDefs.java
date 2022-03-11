@@ -1,5 +1,6 @@
 package com.fidexio.step_defs;
 
+import com.fidexio.pages.DashboarPage;
 import com.fidexio.pages.MailingListsPage;
 import com.fidexio.utilities.BrowserUtils;
 import com.fidexio.utilities.Driver;
@@ -9,36 +10,58 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.util.List;
+
 public class MailingListsStepDefs {
 
     MailingListsPage mailingLists=new MailingListsPage();
 
     @And("user enters Mailing List name")
-    public void userEntersMailingListName() {
+    public void userEntersMailingListName()  {
 
         mailingLists.getFakerListName();
-        mailingLists.name=mailingLists.listNameBox.getText();
+
+       BrowserUtils.waitFor(6);
+
     }
 
-    @Then("verify that title changes to name")
-    public void verifyThatTitleChangesToName() {
+    @Then("verify that the list has been created by searching")
+    public void verifyThatTheListHasBeenCreatedBySearching() throws InterruptedException {
 
-        String expectedTitle=mailingLists.name.concat(" Odoo");
+        String newListName = mailingLists.createdName.getText();
+        BrowserUtils.waitForPageToLoad(5);
+
+        mailingLists.navMailingList();
 
         BrowserUtils.waitForPageToLoad(5);
-        String actualTitle= Driver.get().getTitle();
+        BrowserUtils.waitFor(5);
 
-        System.out.println("actualTitle = " + actualTitle);
-        System.out.println("expectedTitle = " + expectedTitle);
 
-        Assert.assertEquals(expectedTitle,actualTitle);
+        mailingLists.searchFunction(newListName);
+
+        BrowserUtils.waitFor(5);
+
+        List<String> actualMailingLists = BrowserUtils.getElementsText(mailingLists.mailingListList);
+
+        System.out.println("actualMailingLists = " + actualMailingLists);
+
+        for (String eachList : actualMailingLists) {
+
+            Assert.assertTrue(eachList.contains(newListName));
+        }
+
     }
+
 
 
     @When("user clicks on a random Mailing List")
     public void userClicksOnARandomMailingList() {
 
         mailingLists.getRandomMailingList();
+
+        mailingLists.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitForPageToLoad(5);
+
     }
 
 
@@ -64,7 +87,6 @@ public class MailingListsStepDefs {
 
 
         mailingLists.fillTheForm();
-
         mailingLists.beforeSize=mailingLists.counter.getText();
     }
 
@@ -93,4 +115,20 @@ public class MailingListsStepDefs {
         Assert.assertNotEquals(mailingLists.afterSize,mailingLists.beforeSize);
 
     }
+
+    @And("user edits the name of the list")
+    public void userEditsTheNameOfTheList() {
+
+        mailingLists.waitUntilLoaderScreenDisappear();
+        BrowserUtils.waitForPageToLoad(5);
+
+
+        mailingLists.editMailingList();
+
+
+
+
+    }
+
+
 }

@@ -11,18 +11,17 @@ import java.util.Random;
 
 public class MailingListsPage extends BasePage {
 
-    Faker faker=new Faker();
-    Random random=new Random();
-
+    Faker faker = new Faker();
+    Random random = new Random();
 
 
     @FindBy(xpath = "//Input[contains(@placeholder, 'e.g. Consumer Newsletter')]")
     public WebElement listNameBox;
 
-    @FindBy (xpath = "//td/*[@class='o_checkbox']")
-    public List <WebElement> checkboxesList;
+    @FindBy(xpath = "//td/*[@class='o_checkbox']")
+    public List<WebElement> checkboxesList;
 
-    @FindBy (xpath = "//span[@class='o_stat_text']")
+    @FindBy(xpath = "//span[@class='o_stat_text']")
     public WebElement recipientsButton;
 
     @FindBy(xpath = "//Input[contains(@placeholder, 'e.g. John Smith')]")
@@ -31,29 +30,32 @@ public class MailingListsPage extends BasePage {
     @FindBy(xpath = "//td/input[@name='email']")
     public WebElement emailBox;
 
-    @FindBy (xpath = "//span[@class='o_pager_limit']")
+    @FindBy(xpath = "//span[@class='o_pager_limit']")
     public WebElement counter;
 
-    @FindBy (xpath = "//td[@class='o_data_cell o_required_modifier']")
-    public List <WebElement> mailingListList;
+    @FindBy(xpath = "//td[@class='o_data_cell o_required_modifier']")
+    public List<WebElement> mailingListList;
 
-    @FindBy (xpath = "//h1/span")
+    @FindBy(xpath = "//h1/span")
     public WebElement createdName;
 
+    @FindBy(xpath = "//span[contains(text(),'Mailing Lists')]")
+    public WebElement mailingListsLink;
 
 
+    public void navMailingList() {
 
+        mailingListsLink.click();
 
+    }
 
-
-
-    public void getFakerListName(){
+    public void getFakerListName() {
 
         listNameBox.sendKeys(faker.ancient().hero());
     }
 
 
-    public void getRandomMailingList(){
+    public void getRandomMailingList() {
 
         int randomMailingList = random.nextInt(mailingListList.size());
         mailingListList.get(randomMailingList).click();
@@ -66,18 +68,27 @@ public class MailingListsPage extends BasePage {
 
     }
 
+    public void searchFunction(String toBeSearched) {
+
+        searchBox.sendKeys(toBeSearched, Keys.ENTER);
+
+    }
+
+    public void editMailingList() {
+
+        listNameBox.clear();
+        listNameBox.sendKeys(faker.ancient().hero());
+
+        mailingListsLink.click();
+
+    }
+
 
     public static String beforeSize;
     public static String afterSize;
     public static String name;
 
-
-
 }
-
-
-
-
 
 
 
