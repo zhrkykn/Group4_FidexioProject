@@ -23,9 +23,6 @@ public class ContactsPageMarketing extends BasePage{
     @FindBy(xpath = "//button[@accesskey='s']")
     public WebElement saveContacts;
 
-    @FindBy(xpath = "//button[@accesskey='l']")
-    public WebElement listView;
-
     @FindBy(xpath = "//button[@accesskey='k']")
     public WebElement kanbanView;
 
@@ -41,14 +38,8 @@ public class ContactsPageMarketing extends BasePage{
     @FindBy(xpath = "//a[@data-section='other']")
     public WebElement deleteButton;
 
-    @FindBy(xpath = "//span[text()='Ok']")
-    public WebElement okButton;
-
     @FindBy(xpath = "//tr[@class='o_data_row']")
     public WebElement firstContact;
-
-    @FindBy(xpath = "//*[@class='oe_kanban_global_click o_kanban_record']")
-    public WebElement firstContactKanban;
 
     @FindBy(xpath = "//*[@class='o_notification_manager']")
     public WebElement warningMessage;
