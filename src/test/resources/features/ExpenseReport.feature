@@ -14,10 +14,12 @@ Feature: Expense Report Summary
     And The user enters the summary
     Then The user clicks on the employee input
     Then The user selects an employee from dropdown
+    And The user holds the selected employee name
+    Then The user clicks on the selected employee name
     And The user clicks on the Save button
     And The user clicks on the Summary Report to Approve button
     Then The user creates an expense report after list
-    Then Verify that the after list's size is one more before list's size
+    Then Verify that the after list's size is one more than before list's size
     And The user removes the first element of after list
     Then Verify that two lists' elements are exactly same
     Then The user deletes the created report
@@ -29,6 +31,7 @@ Feature: Expense Report Summary
     When The user clicks on the Create button
     Then The user clicks on the employee input
     Then The user selects an employee from dropdown
+    Then The user clicks on the selected employee name
     And The user clicks on the Save button
     Then Verify that the "The following fields are invalid:" "Expense Report Summary" error message is displayed
     When The user clicks on the Discard button

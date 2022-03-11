@@ -19,7 +19,7 @@ public class ExpensesRepStepDefs {
     static String employeeName;
     static WebElement employeeSelected;
 
-    ExpensesPage page = new ExpensesPage();
+    ExpensesPage expensesPage = new ExpensesPage();
     Faker faker = new Faker();
 
     @When("The user clicks on the Expenses from modules")
@@ -27,9 +27,10 @@ public class ExpensesRepStepDefs {
         System.out.println("\n----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
         if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
-            page.expensesModule.click();
+            expensesPage.expensesModule.click();
+            System.out.println("expensesModule clicked");
         }
-        else page.nav("Expenses");
+        else expensesPage.nav("Expenses");
         System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
     }
@@ -37,27 +38,27 @@ public class ExpensesRepStepDefs {
     @When("The user clicks on the Summary Report to Approve button")
     public void the_user_clicks_on_the_Summary_Report_to_Approve_button() {
         BrowserUtils.waitFor(1);
-        page.toApprove.click();
+        expensesPage.toApprove.click();
         System.out.println("toApprove clicked");
     }
 
     @When("The user creates an expense report before list")
     public void the_user_creates_an_expense_report_before_list() {
         BrowserUtils.waitFor(1);
-        expenseReportToApproveListBefore = BrowserUtils.getElementsText(page.reportList);
+        expenseReportToApproveListBefore = BrowserUtils.getElementsText(expensesPage.reportList);
     }
 
     @When("The user clicks on the Expense Report button")
     public void the_user_clicks_on_the_Expense_Report_button() {
         BrowserUtils.waitFor(1);
-        page.expenseReports.click();
+        expensesPage.expenseReports.click();
         System.out.println("expenseReports clicked");
     }
 
     @When("The user clicks on the Create button")
     public void the_user_clicks_on_the_Create_button() {
         BrowserUtils.waitFor(1);
-        page.createButton.click();
+        expensesPage.createButton.click();
         System.out.println("createButton clicked");
     }
 
@@ -65,7 +66,7 @@ public class ExpensesRepStepDefs {
     public void the_user_enters_the_summary() {
         String expectedExpenseReportSummary = faker.commerce().productName();
         BrowserUtils.waitFor(1);
-        page.summaryInput.sendKeys(expectedExpenseReportSummary);
+        expensesPage.summaryInput.sendKeys(expectedExpenseReportSummary);
         BrowserUtils.waitFor(2);
         System.out.println("summaryInput sent");
     }
@@ -74,12 +75,13 @@ public class ExpensesRepStepDefs {
     @Then("The user clicks on the employee input")
     public void the_user_clicks_on_the_employee_input() {
         BrowserUtils.waitFor(1);
-        page.employeeDropdown.click();
+        expensesPage.employeeDropdown.click();
     }
     @Then("The user selects an employee from dropdown")
     public void the_user_selects_an_employee_from_dropdown() {
         int indexEmployee = (int) ((Math.random() * 6)+1);
-        employeeSelected = page.employeeDropdownOptions.get(indexEmployee);
+        employeeSelected = expensesPage.employeeDropdownOptions.get(indexEmployee);
+        System.out.println("employee Selected");
     }
 
     @Then("The user holds the selected employee name")
@@ -93,12 +95,13 @@ public class ExpensesRepStepDefs {
     public void the_user_clicks_on_the_selected_employee_name() {
         BrowserUtils.waitFor(1);
         employeeSelected.click();
+        System.out.println("employee clicked");
     }
 
     @Then("The user clicks on the Save button")
     public void the_user_clicks_on_the_Save_button() {
         BrowserUtils.waitFor(1);
-        page.saveButton.click();
+        expensesPage.saveButton.click();
         System.out.println("saveButton clicked");
         BrowserUtils.waitFor(1);
     }
@@ -106,13 +109,15 @@ public class ExpensesRepStepDefs {
     @Then("The user creates an expense report after list")
     public void the_user_creates_an_expense_report_after_list() {
         BrowserUtils.waitFor(1);
-        expenseReportToApproveListAfter = BrowserUtils.getElementsText(page.reportList);
+        expenseReportToApproveListAfter = BrowserUtils.getElementsText(expensesPage.reportList);
     }
 
 
-    @Then("Verify that the after list's size is one more before list's size")
-    public void verify_that_the_after_list_s_size_is_one_more_before_list_s_size() {
+    @Then("Verify that the after list's size is one more than before list's size")
+    public void verify_that_the_after_list_s_size_is_one_more_than_before_list_s_size() {
         BrowserUtils.waitFor(1);
+        System.out.println("expenseReportToApproveListAfter.size() = " + expenseReportToApproveListAfter.size());
+        System.out.println("expenseReportToApproveListBefore.size() = " + expenseReportToApproveListBefore.size());
         Assert.assertEquals("Verify that expense report list is increased 1", expenseReportToApproveListBefore.size(), expenseReportToApproveListAfter.size()-1);
     }
 
@@ -132,53 +137,53 @@ public class ExpensesRepStepDefs {
     @Then("Verify that the {string} {string} error message is displayed")
     public void verify_that_the_error_message_is_displayed(String expectedErrorMessage1,String expectedErrorMessage2) {
         // this part for assertion
-        String actualErrorMessage = page.notification.getText();
+        String actualErrorMessage = expensesPage.notification.getText();
         System.out.println("actualErrorMessage = " + actualErrorMessage);
         BrowserUtils.waitFor(1);
         Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage1 + "\n" + expectedErrorMessage2);
-        System.out.println("---- The Blank Summary test PASSED -----");
+        System.out.println("---- The blank detail test PASSED -----");
     }
 
     @Then("The user deletes the created report")
     public void the_user_deletes_the_created_report() {
         // this part for deleting the event created
         BrowserUtils.waitFor(1);
-        page.tickboxCreatedExpenseReport.click();
+        expensesPage.tickboxCreatedExpenseReport.click();
         BrowserUtils.waitFor(1);
-        page.actionButton.click();
+        expensesPage.actionButton.click();
         BrowserUtils.waitFor(1);
-        page.deleteAction.click();
+        expensesPage.deleteAction.click();
         BrowserUtils.waitFor(1);
-        page.okayButton.click();
+        expensesPage.okayButton.click();
         System.out.println("\n----- The created Expense Report has been deleted ------");
     }
 
     @When("The user clicks on the Discard button")
     public void the_user_clicks_on_the_Discard_button() {
         BrowserUtils.waitFor(1);
-        page.discardButton.click();
+        expensesPage.discardButton.click();
     }
 
     @When("The user clicks on the Okay button")
     public void the_user_clicks_on_the_Okay_button() {
         BrowserUtils.waitFor(1);
-        page.okayButton.click();
+        expensesPage.okayButton.click();
     }
 
 
     @Then("The user clicks on the Add Item Expense")
     public void the_user_clicks_on_the_Add_Item_Expense() {
         BrowserUtils.waitFor(1);
-        page.addItemExpense.click();
+        expensesPage.addItemExpense.click();
         System.out.println("addItemExpense clicked");
     }
 
     @Then("The user clicks on the list of an unmatched employee name")
     public void the_user_clicks_on_the_list_of_an_unmatched_employee_name() {
         BrowserUtils.waitFor(1);
-        List<String> employeeNameList = BrowserUtils.getElementsText(page.employeeList);
+        List<String> employeeNameList = BrowserUtils.getElementsText(expensesPage.employeeList);
 
-        for (WebElement e: page.employeeList) {
+        for (WebElement e: expensesPage.employeeList) {
             if (!e.getText().equals(employeeName)) {
                 String name = e.getText();
                 System.out.println("employeeName on the Expense Lines found AS " + name);
@@ -192,7 +197,7 @@ public class ExpensesRepStepDefs {
     @Then("Verify that the {string} error message should be displayed")
     public void verify_that_the_error_message_should_be_displayed(String expectedErrorMessage) {
         // this part for assertion
-        String actualErrorMessage = page.expenseLinesErrorMessage.getText();
+        String actualErrorMessage = expensesPage.expenseLinesErrorMessage.getText();
         System.out.println("actualErrorMessage = " + actualErrorMessage);
         BrowserUtils.waitFor(1);
         Assert.assertEquals("Verify that error message is as expected", actualErrorMessage, expectedErrorMessage);
