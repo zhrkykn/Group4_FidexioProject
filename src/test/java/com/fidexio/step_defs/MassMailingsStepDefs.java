@@ -8,6 +8,7 @@ import com.fidexio.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 public class MassMailingsStepDefs {
     MassMailingsPage massMailingsPage=new MassMailingsPage();
@@ -44,36 +45,44 @@ public class MassMailingsStepDefs {
 
     @When("user clicks on a random Mass mailings")
     public void user_clicks_on_a_random_Mass_mailings() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        massMailingsPage.getRandomMassMailing();
     }
 
     @When("the user edits the name of the subject")
     public void the_user_edits_the_name_of_the_subject() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(5);
+
+        massMailingsPage.subjectBox.clear();
+        massMailingsPage.subjectBox.sendKeys("Fourth Newsletter");
+
     }
 
     @Then("Verify that the Subject name has been changed")
     public void verify_that_the_Subject_name_has_been_changed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
-    @When("the user clicks on a random Mass mailings")
-    public void the_user_clicks_on_a_random_Mass_mailings() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+      String expectedName=  massMailingsPage.editedName.getText();
+
+      massMailingsPage.nav("Email Marketings", "Mass Mailings");
+
+        for (WebElement list: massMailingsPage.massMailingList) {
+            if(list.getText().equals(expectedName)){
+                Assert.assertEquals(list.getText(),expectedName);
+                System.out.println("expectedName = " + expectedName);
+                System.out.println("list.getText() = " + list.getText());
+            }
+
+        }
+
     }
 
     @When("the user clicks on the {string} from the pop up button")
     public void the_user_clicks_on_the_from_the_pop_up_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
     }
 
-    @Then("user verifies the Mass mailings number has not changed")
-    public void user_verifies_the_Mass_mailings_number_has_not_changed() {
+    @Then("user verifies the Subject name has not been changed")
+    public void user_verifies_the_Subject_name_has_not_been_changed() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
