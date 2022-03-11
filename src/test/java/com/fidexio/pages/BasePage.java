@@ -16,17 +16,36 @@ import java.util.List;
 
 public abstract class BasePage {
 
-
     @FindBy(css = "div[class='o_loading']")
     @CacheLookup
     protected WebElement loading;
 
-    @FindBy(css = "span[class='oe_topbar_name']")
-    public WebElement userName;
+    //************Buttons for anywhere********************
 
-    //save button for all vehicle page
     @FindBy(xpath = "//button[contains(text(),'Save')]")
     public WebElement saveButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Discard')]")
+    public WebElement DiscardButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Edit')]")
+    public WebElement EditButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Create')]")
+    public WebElement CreateButton;
+
+    @FindBy(xpath = "//button[contains(text(),'Import')]")
+    public WebElement ImportButton;
+
+    @FindBy(xpath = "//Input[contains(@placeholder, 'Search...')]")
+    public WebElement searchBox;
+
+
+
+
+
+    @FindBy(css = "span[class='oe_topbar_name']")
+    public WebElement userName;
 
     @FindBy(linkText = "Log out")
     public WebElement logOutLink;
@@ -91,7 +110,7 @@ public abstract class BasePage {
         BrowserUtils.waitFor(2);
         List<WebElement> elements = Driver.get().findElements(By.xpath("//span[contains(text(),'Discuss')]/../../../li/a"));
         List<WebElement> elementsMore = new ArrayList<>();
-        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isEnabled()){
+        if( Driver.get().findElement(By.cssSelector("#menu_more_container>a")).isDisplayed()){
             Driver.get().findElement(By.cssSelector("#menu_more_container>a")).click();
             elementsMore = Driver.get().findElements(By.cssSelector("#menu_more_container>ul>li>a>span"));
         }
@@ -112,7 +131,7 @@ public abstract class BasePage {
             }
         }
 
-        new DashboarPage().waitUntilLoaderScreenDisappear();
+        waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(2);
     }
 
