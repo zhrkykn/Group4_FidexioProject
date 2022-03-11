@@ -17,10 +17,10 @@ Scenario:Verify that the user can switch Kanban-List view
   Then user should be able to see list view
 
 Scenario:Verify that the user can discard changes
-  When user click the create button
-  And user enter the opportunity title
+  When user click on the create button
+  And enter the opportunity title
   And user click on the Discard button
-  Then  user verifies the opportunity title has not changed
+  Then  user should be able to see kanban view
 
 Scenario:Verify that the user can edit Pipeline
   When user click on a random pipeline
