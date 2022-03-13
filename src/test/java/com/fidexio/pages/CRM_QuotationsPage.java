@@ -1,14 +1,51 @@
 package com.fidexio.pages;
 
-import com.fidexio.utilities.BrowserUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.xml.xpath.XPath;
 import java.util.List;
 import java.util.Random;
 
 public class CRM_QuotationsPage extends BasePage{
+
+
+    @FindBy(xpath = "(//*[@class='oe_menu_toggler'])[2]")
+    public WebElement CRMbutton;
+
+    @FindBy(xpath = "(//*[@class='oe_menu_leaf'])[6]")
+    public WebElement pipelineButton;
+
+    @FindBy(xpath ="//button[@accesskey='k']")
+    public WebElement KanbanList;
+
+    @FindBy(css=".btn.btn-primary.btn-sm.o-kanban-button-new")
+    public WebElement PipecreatButton;
+
+    @FindBy(xpath = "//*[@class='o_field_char o_field_widget o_input o_required_modifier']")
+    public WebElement OpportunityTitle;
+
+    @FindBy(xpath = "//*[@class='o_field_char o_field_widget o_input o_required_modifier']")
+    public WebElement OpportunityCustomer;
+
+    @FindBy(xpath = "(//*[@class='btn btn-sm btn-primary'])[1]")
+    public WebElement OpportunityCreate;
+
+    @FindBy(xpath ="//button[@accesskey='l']")
+    public WebElement PipeList;
+
+    @FindBy(css="button.btn.btn-primary.btn-sm.o_form_button_save")
+    public WebElement PipeSaveButton;
+
+    @FindBy(xpath ="//button[@accesskey='a']")
+    public WebElement PipeEdit;
+
+    @FindBy(xpath= "//span[text()='Discard']")
+    public WebElement DiscardButton;
+
+    @FindBy(xpath = "//div[@data-id='2']//div[@class='oe_kanban_color_0 oe_kanban_global_click o_kanban_record ui-sortable-handle']")
+    public List<WebElement> EditList;
 
 
     @FindBy(xpath = "//tr[@class='o_data_row']")

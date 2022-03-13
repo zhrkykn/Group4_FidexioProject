@@ -17,14 +17,14 @@ Feature: Sales Manager should be able to create CRM/QUOTATIONS
     When user clicks on the "Create" button
     And user enters Mailing List name
     And user clicks on the "Save" button
-    Then verify that title changes to "new mailing list - Odoo"
+    Then verify that the list has been created by searching
 
 
   Scenario: Verify that user can add contacts to Recipients
     When user clicks on a random Mailing List
     And user clicks recipients and Create button
     And user fills the new contact form
-    Then Verify that the new contact is displayed in Recipients List
+    Then Verify that the new contact is added in Recipients List
 
 
   Scenario: Verify that the user can delete Mailing List
@@ -38,7 +38,7 @@ Feature: Sales Manager should be able to create CRM/QUOTATIONS
     And user clicks on the "Edit" button
     And user edits the name of the list
     And user clicks on the "Save" button
-    Then Verify that the list name has been edited
+    Then verify that the list has been created by searching
 
   Scenario:Verify that sales manager can discard changes
     When user gets number of quotes and clicks on Create
