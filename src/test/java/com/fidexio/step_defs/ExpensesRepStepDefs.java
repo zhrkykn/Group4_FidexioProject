@@ -26,11 +26,14 @@ public class ExpensesRepStepDefs {
     public void the_user_clicks_on_the_Expenses_from_modules() {
         System.out.println("\n----- Navigating to Expense Page ------");
         BrowserUtils.waitFor(2);
-        if (ConfigurationReader.get("browser").equalsIgnoreCase("chrome")) {
+
+        try{
             expensesPage.expensesModule.click();
-            System.out.println("expensesModule clicked");
         }
-        else expensesPage.nav("Expenses");
+        catch (Exception e){
+            expensesPage.nav("Expenses");
+        }
+
         System.out.println("expensesModule clicked");
         BrowserUtils.waitFor(2);
     }
