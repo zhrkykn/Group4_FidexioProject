@@ -1,5 +1,6 @@
 package com.fidexio.pages;
 
+import com.fidexio.utilities.BrowserUtils;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -65,6 +66,7 @@ public class MailingListsPage extends BasePage {
 
         customerNameBox.sendKeys(faker.name().fullName());
         emailBox.sendKeys(faker.internet().emailAddress());
+        BrowserUtils.waitFor(5);
 
     }
 
@@ -78,9 +80,6 @@ public class MailingListsPage extends BasePage {
 
         listNameBox.clear();
         listNameBox.sendKeys(faker.ancient().hero());
-
-        mailingListsLink.click();
-
     }
 
 

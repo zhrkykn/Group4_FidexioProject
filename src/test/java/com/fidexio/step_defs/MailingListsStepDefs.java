@@ -28,6 +28,7 @@ public class MailingListsStepDefs {
     @Then("verify that the list has been created by searching")
     public void verifyThatTheListHasBeenCreatedBySearching() throws InterruptedException {
 
+
         String newListName = mailingLists.createdName.getText();
         BrowserUtils.waitForPageToLoad(5);
 
@@ -66,15 +67,14 @@ public class MailingListsStepDefs {
 
 
     @And("user clicks recipients and Create button")
-    public void userClicksRecipientsAndCreateButton() {
+    public void userClicksRecipientsAndCreateButton() throws InterruptedException {
         
         mailingLists.recipientsButton.click();
         BrowserUtils.waitForPageToLoad(6);
+        BrowserUtils.waitForVisibility(mailingLists.CreateButton,6);
 
-
-        
-        mailingLists.CreateButton.click();
-        BrowserUtils.waitForPageToLoad(6);
+//        mailingLists.CreateButton.click();
+//        BrowserUtils.waitForPageToLoad(6);
 
         
     }
@@ -124,6 +124,10 @@ public class MailingListsStepDefs {
 
 
         mailingLists.editMailingList();
+
+        BrowserUtils.waitFor(5);
+
+
 
 
 

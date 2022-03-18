@@ -66,6 +66,9 @@ public class CRM_QuotationsPage extends BasePage{
     @FindBy (xpath="//button[contains(text(),'Action')]")
     public WebElement actionButton;
 
+    @FindBy (xpath="//button[contains(text(),'Save')]")
+    public WebElement saveButton;
+
     @FindBy(xpath = "//a[contains(text(),'Delete')]")
     public WebElement deleteButton;
 

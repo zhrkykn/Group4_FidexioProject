@@ -23,6 +23,7 @@ Feature: Sales Manager should be able to create CRM/QUOTATIONS
   Scenario: Verify that user can add contacts to Recipients
     When user clicks on a random Mailing List
     And user clicks recipients and Create button
+    And user clicks on the "Create" button
     And user fills the new contact form
     Then Verify that the new contact is added in Recipients List
 
