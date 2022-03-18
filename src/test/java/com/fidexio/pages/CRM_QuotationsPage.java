@@ -41,7 +41,7 @@ public class CRM_QuotationsPage extends BasePage{
     @FindBy(xpath ="//button[@accesskey='a']")
     public WebElement PipeEdit;
 
-    @FindBy(xpath= "//span[text()='Discard']")
+    @FindBy(xpath= "//button[contains(text(),'Discard')]")
     public WebElement DiscardButton;
 
     @FindBy(xpath = "//div[@data-id='2']//div[@class='oe_kanban_color_0 oe_kanban_global_click o_kanban_record ui-sortable-handle']")

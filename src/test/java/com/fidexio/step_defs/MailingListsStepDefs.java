@@ -122,17 +122,8 @@ public class MailingListsStepDefs {
         mailingLists.waitUntilLoaderScreenDisappear();
         BrowserUtils.waitForPageToLoad(5);
 
-
         mailingLists.editMailingList();
 
         BrowserUtils.waitFor(5);
-
-
-
-
-
-
     }
-
-
 }
